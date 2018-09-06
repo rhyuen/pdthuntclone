@@ -1,0 +1,81 @@
+{
+    "data": [
+        {
+            "name": "Pokemon",
+            "description": "a fictional element.",
+            "category": "Animal",
+            "count": 9000,
+            "voted": false
+        },
+        {
+            "name": "Orange",
+            "description": "A citris fruit.",
+            "category": "Food",
+            "count": 100,
+            "voted": false
+        },
+        {
+            "name": "Apple",
+            "description": "red fruit.",
+            "category": "Food",
+            "count": 22,
+            "voted": false
+        },
+        {
+            "name": "Collon", 
+            "description": "Biscuits with synthetic cream inside.",
+            "category": "Food",
+            "count": 78,
+            "voted": false
+        },
+        {
+            "name": "Pocky", 
+            "description": "Long, narrow biscuits with a frosted coating.",
+            "category": "Food",
+            "count": 23,
+            "voted": false
+        },
+        {
+            "name": "Car", 
+            "description": "Vehicle for moving around",
+            "category": "Vehicle",
+            "count": 7654,
+            "voted": false
+        },
+        {
+            "name": "Tesla", 
+            "description": "Electric Vehicle for moving around",
+            "category": "Vehicle",
+            "count": 90000,
+            "voted": false
+        },
+        {
+            "name": "Scooter", 
+            "description": "Foot propelled vehicle for moving around",
+            "category": "Vehicle",
+            "count": 22,
+            "voted": false
+        },
+        {
+            "name": "Hover Board", 
+            "description": "Not actually a hoverboard.  Just an electric unicycle.",
+            "category": "Vehicle",
+            "count": 1,
+            "voted": false
+        },
+        {
+            "name": "Solo", 
+            "description": "a movie about han solo before he was kind of famous",
+            "category": "Movie",
+            "count": 7,
+            "voted": false
+        },
+        {
+            "name": "Lime", 
+            "description": "A colourful but not so tasty fruit.  It's green",
+            "category": "Food",
+            "count": 4,
+            "voted": false
+        }
+    ]
+}
