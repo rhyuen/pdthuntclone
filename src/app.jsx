@@ -111,6 +111,26 @@ class App extends Component{
         });
     }
 
+    handleSubscribe = (id, e) => {
+        this.setState(prevState => {
+            let updated = prevState.data.map(curr => {
+                if(id !== curr.id){
+                    return curr;
+                }else if(curr.subscribed){
+                    return curr;
+                }else{
+                    return Object.assign(curr, {
+                        subscribed: true
+                    });
+                }
+            });
+            return {
+                ...prevState,
+                data: updated
+            };
+        });
+    }
+
     handleCloseButton = (id, e) => {        
         this.setState(prevState => {
             let updated = prevState.data.filter(curr => {
@@ -127,7 +147,7 @@ class App extends Component{
 
     render(){                                       
         return (         
-            <div>
+            <div>                
                 <Form onSubmit = {this.handleSubmit}
                     nameValue = {this.state.pdtName}
                     descriptionValue = {this.state.pdtDescription}
@@ -135,6 +155,7 @@ class App extends Component{
                     onInputChange = {this.handleInputChange}/>                    
                 <PdtList data = {this.state.data}
                     onClickUpvote = {this.handleUpvote}
+                    onSubscribe = {this.handleSubscribe}
                     onClickCloseButton = {this.handleCloseButton}/>      
                 <AdPanel/>          
             </div>                                        

@@ -1,9 +1,20 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import styled from "styled-components";
 
+const StyledNav = styled.nav`
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;    
+`;
+const StyledLink = styled(Link)`    
+`;
 export default () => {
     return (
-        <div>
-            Nav
-        </div>
+        <StyledNav>            
+            <StyledLink to = "/">Home</StyledLink>            
+            <StyledLink to = "/subscribed">Subscribed</StyledLink>
+            <StyledLink to = "/me">Me</StyledLink>
+        </StyledNav>
     );
 }
