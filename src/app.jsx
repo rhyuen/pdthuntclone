@@ -1,18 +1,22 @@
 import React, {Component} from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import PdtList from "./PdtList.jsx";
 import productFile from "./productdata.json";
 import uuid from "uuid";
 import Form from "./PdtForm.jsx";
+import PdtFilter from "./PdtFilter.jsx";
 import Nav from "./Nav.jsx";
 import AdPanel from "./AdPanel.jsx";
 
+
 class App extends Component{
-    state = {   
-      data: [],
-      pdtName : "name",
-      pdtDescription: "desc",
-      pdtCategory: "cat"
+    state = {    
+      data: [],      
+      filter: "All",
+      pdtName : "Newest Product Name",
+      pdtDescription: "Newest Description",
+      pdtCategory: "Newest Category"
     }   
 
     componentDidMount(){
@@ -73,11 +77,14 @@ class App extends Component{
             });
         }
 
-        this.setState({                        
-            data: updated,
-            pdtName: "",
-            pdtCategory: "",
-            pdtDescription: ""            
+        this.setState(prevState => {                        
+            return{
+                ...prevState,
+                data: updated,
+                pdtName: "",
+                pdtCategory: "",
+                pdtDescription: ""            
+            }
         });
     }
 
@@ -143,17 +150,39 @@ class App extends Component{
                 data: updated
             };
         });
-    } 
+    }  
+    
+    handleFilterChange = (name, e) => {     
+        console.log(name);        
+        this.setState(prevState => {
+            return {
+                ...prevState,
+                filter: name
+            };
+        });        
+    }
 
-    render(){                                       
+    getFilteredData = () => {
+        if(this.state.filter === "All"){
+            return this.state.data;
+        }else{
+            return this.state.data.filter(datum => datum.category === this.state.filter);
+        }
+    }
+
+    render(){       
+        const filteredData = this.getFilteredData();
+        
         return (         
             <div>                
                 <Form onSubmit = {this.handleSubmit}
                     nameValue = {this.state.pdtName}
                     descriptionValue = {this.state.pdtDescription}
                     categoryValue = {this.state.pdtCategory}
-                    onInputChange = {this.handleInputChange}/>                    
-                <PdtList data = {this.state.data}
+                    onInputChange = {this.handleInputChange}/>    
+                <PdtFilter data = {this.state.data} 
+                    onFilterChange ={this.handleFilterChange}/>                
+                <PdtList data = {filteredData}                    
                     onClickUpvote = {this.handleUpvote}
                     onSubscribe = {this.handleSubscribe}
                     onClickCloseButton = {this.handleCloseButton}/>      

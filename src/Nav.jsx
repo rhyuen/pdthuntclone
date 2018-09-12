@@ -4,8 +4,7 @@ import styled from "styled-components";
 
 const StyledNav = styled.nav`
     display: flex;
-    width: 100vw;
-    justify-content: space-between;    
+    width: 100vw;    
 `;
 const StyledLink = styled(Link)`    
 `;

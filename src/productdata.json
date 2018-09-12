@@ -15,6 +15,20 @@
             "voted": false
         },
         {
+            "name": "Darth Vader",
+            "description": "The chosen one on the low ground.",
+            "category": "Character",
+            "count": 299,
+            "voted": false
+        },
+        {
+            "name": "Luke Skywalker",
+            "description": "Another chosen one.",
+            "category": "Character",
+            "count": 300,
+            "voted": false
+        },
+        {
             "name": "Apple",
             "description": "red fruit.",
             "category": "Food",
@@ -96,6 +110,27 @@
             "description": "A colourful but not so tasty fruit.  It's yellow.  You can use it to make lemonade.",
             "category": "Food",
             "count": 5,
+            "voted": false
+        },        
+        {
+            "name": "Rocket", 
+            "description": "Sometimes they land.  Most of the time they don't.  They're often fire and forget.  Ever so wasteful.",
+            "category": "Vehicle",
+            "count": 34,
+            "voted": false
+        },
+        {
+            "name": "Batman", 
+            "description": "Vengence is the night.  Except when it's not.  He also has a bunch of proteges that sometimes stick around.",
+            "category": "Character",
+            "count": 5,
+            "voted": false
+        },        
+        {
+            "name": "Superman", 
+            "description": "Up, up and away.  Batman is clearly better than super-man.",
+            "category": "Character",
+            "count": 6,
             "voted": false
         },
         {
