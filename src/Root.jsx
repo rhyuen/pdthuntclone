@@ -7,7 +7,7 @@ import Subscribed from "./Subscribed.jsx";
 import Me from "./Me.jsx";
 // import Personal from "./Personal.jsx";
 
-const STX = styled.div`
+const RootContent = styled.div`
         width: 100%;
         display: flex;                
         flex-direction: column;
@@ -17,12 +17,12 @@ const STX = styled.div`
 const Root = () => {    
     return (
         <Router>            
-            <STX>
+            <RootContent>
                 <Nav/>                        
                 <Route exact path = "/" component = {App}/>    
                 <Route exact path = "/subscribed" component = {Subscribed}/>
                 <Route exact path = "/me" component = {Me}/>
-            </STX>            
+            </RootContent>            
         </Router>
     );
 };

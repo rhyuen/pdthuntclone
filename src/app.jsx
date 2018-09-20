@@ -20,17 +20,18 @@ class App extends Component{
     }   
 
     componentDidMount(){
-        const withId = productFile.data.map(item => {
+        const dataWithId = productFile.data.map(item => {
             return Object.assign(item, {
                 id: uuid.v4(), 
                 subscribed: false, 
-                upped: false
+                upped: false,
+                saved: false
             });
         });
         this.setState(prevState => {
             return {
                 ...prevState,
-                data: withId
+                data: dataWithId
             };
         });
     }
@@ -140,9 +141,22 @@ class App extends Component{
 
     handleCloseButton = (id, e) => {        
         this.setState(prevState => {
-            let updated = prevState.data.filter(curr => {
-                if(id !== curr.id){
+            let updated = prevState.data.filter(curr => id !== curr.id);
+            return {
+                ...prevState,
+                data: updated
+            };
+        });
+    }  
+
+    handleSaveForLater = (id, e) => {
+        this.setState(prevState => {
+            let updated = prevState.data.map(curr => {
+                if(id !== curr.id || curr.saved){
                     return curr;
+                }else{
+                    const change = {saved: true};
+                    return Object.assign(curr, change);
                 }
             });
             return {
@@ -150,7 +164,7 @@ class App extends Component{
                 data: updated
             };
         });
-    }  
+    }
     
     handleFilterChange = (name, e) => {     
         console.log(name);        
@@ -166,7 +180,8 @@ class App extends Component{
         if(this.state.filter === "All"){
             return this.state.data;
         }else{
-            return this.state.data.filter(datum => datum.category === this.state.filter);
+            return this.state.data
+                .filter(datum => datum.category === this.state.filter);
         }
     }
 
@@ -182,7 +197,8 @@ class App extends Component{
                     onInputChange = {this.handleInputChange}/>    
                 <PdtFilter data = {this.state.data} 
                     onFilterChange ={this.handleFilterChange}/>                
-                <PdtList data = {filteredData}                    
+                <PdtList data = {filteredData} 
+                    onClickSaveForLater = {this.handleSaveForLater}                   
                     onClickUpvote = {this.handleUpvote}
                     onSubscribe = {this.handleSubscribe}
                     onClickCloseButton = {this.handleCloseButton}/>      
