@@ -1,5 +1,6 @@
-import React, {Component} from "react";
+import React from "react";
 import uuid from "uuid";
+import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -14,9 +15,10 @@ const List = ({data, onClickCloseButton, onClickUpvote, onSubscribe, onClickSave
         const saved = curr.saved ?
             <button>Saved</button> : 
             <button onClick = {onClickSaveForLater.bind(this, curr.id)}>SaveForLater</button>;
+        
         return (
             <div key = {curr.id}>                    
-                <div>{curr.name}</div>
+                <div><Link to = {`/product/${curr.name}`}>{curr.name}</Link></div>
                 <div>{curr.description}</div>
                 <div>{curr.category}</div>
                 <span>{curr.count}</span>    
@@ -30,6 +32,14 @@ const List = ({data, onClickCloseButton, onClickUpvote, onSubscribe, onClickSave
         );
     });    
     return listOfItems;
+};
+
+List.propTypes = {    
+    data: PropTypes.array.isRequired,
+    onClickCloseButton: PropTypes.func.isRequired,
+    onClickUpvote: PropTypes.func.isRequired,
+    onSubscribe: PropTypes.func.isRequired, 
+    onClickSaveForLater: PropTypes.func.isRequired
 };
 
 export default List;

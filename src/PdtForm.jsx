@@ -33,6 +33,14 @@ const PdtForm = ({
         </form>        
     );
 };
+
+PdtForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    onInputChange: PropTypes.func.isRequired,
+    nameValue: PropTypes.string,
+    categoryValue: PropTypes.string,
+    descriptionValue: PropTypes.string
+};
    
 
 export default PdtForm;

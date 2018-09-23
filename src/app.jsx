@@ -6,7 +6,6 @@ import productFile from "./productdata.json";
 import uuid from "uuid";
 import Form from "./PdtForm.jsx";
 import PdtFilter from "./PdtFilter.jsx";
-import Nav from "./Nav.jsx";
 import AdPanel from "./AdPanel.jsx";
 
 
@@ -16,7 +15,8 @@ class App extends Component{
       filter: "All",
       pdtName : "Newest Product Name",
       pdtDescription: "Newest Description",
-      pdtCategory: "Newest Category"
+      pdtCategory: "Newest Category",
+      adCollapsed: false
     }   
 
     componentDidMount(){

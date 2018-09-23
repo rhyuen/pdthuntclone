@@ -5,8 +5,8 @@ import styled from "styled-components";
 
 const Filter = ({data, onFilterChange}) => {
     const types = data.map(item => item.category);
-    const noDupTypes = new Set(types);
-    const gah = [...noDupTypes].map(type => {
+    const noDuplicateFilters = new Set(types);
+    const filters = [...noDuplicateFilters].map(type => {
         return (
             <span key = {uuid.v4()}>                
                 <button onClick = {onFilterChange.bind(this, type)}>
@@ -15,12 +15,17 @@ const Filter = ({data, onFilterChange}) => {
             </span>
         );
     });
-    const all = <span key = {uuid.v4()}>
+    const allFilter = <span key = {uuid.v4()}>
         <button onClick = {onFilterChange.bind(this, "All")}>
             All
         </button>
     </span>;
-    return [all, ...gah];    
+    return [allFilter, ...filters];    
+};
+
+Filter.propTypes = {
+    data: PropTypes.array,
+    onFilterChange: PropTypes.func.isRequired
 };
 
 

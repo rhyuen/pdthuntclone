@@ -3,8 +3,31 @@
         {
             "name": "Pokemon",
             "description": "a fictional element.",
+            "fullDescription": "A game about catching wild animals and using them to fight with one another for social advancement in one's society.  To date, many successive iterations have been released.",
             "category": "Animal",
             "count": 9000,
+            "voted": false
+        },
+        {
+            "name": "Lugia",
+            "description": "A Pokemon.",
+            "fullDescription": "A legendary fictional animal that is featured in a full length film.  It's part of the second iteration of the games where animals are pitted against one another by human owners.",
+            "category": "Animal",
+            "count": 91,
+            "voted": false
+        },
+        {
+            "name": "Pikachu",
+            "description": "an electric rodent",
+            "category": "Animal",
+            "count": 25,
+            "voted": false
+        },
+        {
+            "name": "Ho-oh",
+            "description": "A Pokemon that's a flying rooster.",
+            "category": "Animal",
+            "count": 250,
             "voted": false
         },
         {

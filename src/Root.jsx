@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import Nav from "./Nav.jsx";
 import Subscribed from "./Subscribed.jsx";
 import Me from "./Me.jsx";
+import ProductSingle from "./ProductSingle.jsx";
 // import Personal from "./Personal.jsx";
 
 const RootContent = styled.div`
@@ -22,6 +23,7 @@ const Root = () => {
                 <Route exact path = "/" component = {App}/>    
                 <Route exact path = "/subscribed" component = {Subscribed}/>
                 <Route exact path = "/me" component = {Me}/>
+                <Route exact path = "/product/:name" component = {ProductSingle}/>
             </RootContent>            
         </Router>
     );
