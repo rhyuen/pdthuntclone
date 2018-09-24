@@ -1,16 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-
-const Root = () => {    
-    return (
-        <div>
-            It's me guys.  <br/>
-            And my personal information<br/>
-            But mainly me.
-        </div>
-    );
+const Root = () => {
+  return <div>It is my Me page guys.</div>;
 };
-
 
 export default Root;
