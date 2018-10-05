@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import PdtList from "./PdtList.jsx";
-import productFile from "./productdata.json";
 import uuid from "uuid";
 import Form from "./PdtForm.jsx";
 import PdtFilter from "./PdtFilter.jsx";
@@ -17,21 +17,47 @@ class App extends Component {
     adCollapsed: false
   };
 
+  // componentDidMount() {
+  //   const dataWithId = productFile.data.map(item => {
+  //     return Object.assign(item, {
+  //       id: uuid.v4(),
+  //       subscribed: false,
+  //       upped: false,
+  //       saved: false
+  //     });
+  //   });
+  //   this.setState(prevState => {
+  //     return {
+  //       ...prevState,
+  //       data: dataWithId
+  //     };
+  //   });
+  // }
+
   componentDidMount() {
-    const dataWithId = productFile.data.map(item => {
-      return Object.assign(item, {
-        id: uuid.v4(),
-        subscribed: false,
-        upped: false,
-        saved: false
+    const apiURL = "http://localhost:9873/product/";
+    axios
+      .get(apiURL)
+      .then(res => {
+        const responseData = res.data.data;
+        const dataWithId = responseData.map(item => {
+          return Object.assign(item, {
+            id: uuid.v4(),
+            subscribed: false,
+            upped: false,
+            saved: false
+          });
+        });
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            data: dataWithId
+          };
+        });
+      })
+      .catch(e => {
+        console.log(e);
       });
-    });
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        data: dataWithId
-      };
-    });
   }
 
   handleInputChange = e => {
@@ -60,13 +86,18 @@ class App extends Component {
     const name = this.state.pdtName;
     const category = this.state.pdtCategory;
     const description = this.state.pdtDescription;
+    const fullDescription =
+      "A fuller description has not yet been added, but this will have to do for now.";
     const id = uuid.v4();
     let updated = this.state.data.concat({
       id,
       name,
       category,
       description,
-      voted: false,
+      fullDescription,
+      subscribed: false,
+      upped: false,
+      saved: false,
       count: 0
     });
     if (name === "" || category === "" || description === "") {
@@ -85,15 +116,6 @@ class App extends Component {
       };
     });
   };
-
-  // handleInputChange = name => e => {
-  //     this.setState(prevState => {
-  //         return{
-  //             ...prevState,
-  //             [name]: e.currentTarget.value
-  //         };
-  //     });
-  // }
 
   handleUpvote = (id, e) => {
     this.setState(prevState => {

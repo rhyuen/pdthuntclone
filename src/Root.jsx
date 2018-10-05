@@ -15,15 +15,23 @@ const RootContent = styled.div`
   align-items: center;
   box-sizing: border-box;
 `;
+const RouteContainer = styled.div`
+  position: relative;
+  top: 5vh;
+  background: lavender;
+  width: 100%;
+`;
 const Root = () => {
   return (
     <Router>
       <RootContent>
         <Nav />
-        <Route exact path="/" component={App} />
-        <Route exact path="/subscribed" component={Subscribed} />
-        <Route exact path="/me" component={Me} />
-        <Route exact path="/product/:name" component={ProductSingle} />
+        <RouteContainer>
+          <Route exact path="/" component={App} />
+          <Route exact path="/subscribed" component={Subscribed} />
+          <Route exact path="/me" component={Me} />
+          <Route exact path="/product/:name" component={ProductSingle} />
+        </RouteContainer>
       </RootContent>
     </Router>
   );
