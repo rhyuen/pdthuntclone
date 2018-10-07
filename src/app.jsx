@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import PdtList from "./PdtList.jsx";
-import uuid from "uuid";
 import Form from "./PdtForm.jsx";
 import PdtFilter from "./PdtFilter.jsx";
 import AdPanel from "./AdPanel.jsx";
@@ -13,11 +12,12 @@ class App extends Component {
   state = {
     data: [],
     filter: "All",
-    pdtName: `Newest Product Name ${Math.random() * 100}`,
-    pdtDescription: `Newest Description ${Math.random() * 100}`,
-    pdtCategory: `Newest Category ${Math.random() * 100}`,
+    pdtName: `Product Name ${Math.floor(Math.random() * 100)}`,
+    pdtDescription: `Summary Description ${Math.floor(Math.random() * 100)}`,
+    pdtCategory: `Category ${Math.floor(Math.random() * 100)}`,
     adCollapsed: false,
-    isLoading: true
+    isLoading: true,
+    isError: false
   };
 
   componentDidMount() {
@@ -42,7 +42,15 @@ class App extends Component {
         });
       })
       .catch(e => {
+        //TODO: Make Error Disclaimer/Message show up.
         console.log(e);
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            isError: true,
+            isLoading: false
+          };
+        });
       });
   }
 
@@ -97,7 +105,13 @@ class App extends Component {
       .then(res => {
         console.log(res);
         this.setState(prevState => {
-          const updated = prevState.data.concat(res.data);
+          const latest = Object.assign(res.data, {
+            subscribed: false,
+            upped: false,
+            saved: false
+          });
+
+          const updated = prevState.data.concat(latest);
           return {
             ...prevState,
             data: updated,
@@ -108,6 +122,7 @@ class App extends Component {
         });
       })
       .catch(e => {
+        //TODO: ERror message handling
         console.log("post error");
         console.log(e);
       });
@@ -116,7 +131,7 @@ class App extends Component {
   handleUpvote = (id, e) => {
     this.setState(prevState => {
       let updated = prevState.data.map(curr => {
-        if (id !== curr.id) {
+        if (id !== curr._id) {
           return curr;
         } else if (curr.upped) {
           return curr;
@@ -137,7 +152,7 @@ class App extends Component {
   handleSubscribe = (id, e) => {
     this.setState(prevState => {
       let updated = prevState.data.map(curr => {
-        if (id !== curr.id) {
+        if (id !== curr._id) {
           return curr;
         } else if (curr.subscribed) {
           return curr;
@@ -156,7 +171,7 @@ class App extends Component {
 
   handleCloseButton = (id, e) => {
     this.setState(prevState => {
-      let updated = prevState.data.filter(curr => id !== curr.id);
+      let updated = prevState.data.filter(curr => id !== curr._id);
       return {
         ...prevState,
         data: updated
@@ -167,7 +182,7 @@ class App extends Component {
   handleSaveForLater = (id, e) => {
     this.setState(prevState => {
       let updated = prevState.data.map(curr => {
-        if (id !== curr.id || curr.saved) {
+        if (id !== curr._id || curr.saved) {
           return curr;
         } else {
           const change = { saved: true };

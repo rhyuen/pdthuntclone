@@ -35,10 +35,12 @@ router.post("/", wrapAsync(async (req, res) => {
 
 router.get("/:id", wrapAsync(async (req, res) => {
     const identifier = req.params.id;
-    console.log(identifier);
     const result = await Product.findById(identifier);
-    console.log(result)
     res.status(200).json(result);
+}));
+
+router.post("/:id", wrapAsync(async (req, res) => {
+
 }));
 
 module.exports = router;

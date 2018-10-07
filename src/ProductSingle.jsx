@@ -40,15 +40,32 @@ class ProductSingle extends Component {
       <div>this is done loading</div>
     );
 
-    const { category, count, fullDescription, name } = this.state.data;
+    const {
+      category,
+      count,
+      summaryDescription,
+      fullDescription,
+      name
+    } = this.state.data;
     return (
       <StyledPdtSingle>
         {loading}
         <section>
-          <p>{category}</p>
-          <p>{count}</p>
-          <p>{fullDescription}</p>
-          <p>{name}</p>
+          <h1>{name}</h1>
+          <h4>{category}</h4>
+          <span>
+            <p>{count}</p>
+          </span>
+          <span>
+            <p>
+              {summaryDescription ? (
+                summaryDescription
+              ) : (
+                <div>no summary description</div>
+              )}
+            </p>
+            <p>{fullDescription}</p>
+          </span>
         </section>
         <p>
           Adding a list of suggestions as well as click outside to return to

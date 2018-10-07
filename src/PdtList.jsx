@@ -14,23 +14,23 @@ const List = ({
     const upped = curr.upped ? (
       <button>Upped</button>
     ) : (
-      <button onClick={onClickUpvote.bind(this, curr.id)}>+</button>
+      <button onClick={onClickUpvote.bind(this, curr._id)}>+</button>
     );
     const subbed = curr.subscribed ? (
       <button>Subbed</button>
     ) : (
-      <button onClick={onSubscribe.bind(this, curr.id)}>Subscribe</button>
+      <button onClick={onSubscribe.bind(this, curr._id)}>Subscribe</button>
     );
     const saved = curr.saved ? (
       <button>Saved</button>
     ) : (
-      <button onClick={onClickSaveForLater.bind(this, curr.id)}>
+      <button onClick={onClickSaveForLater.bind(this, curr._id)}>
         SaveForLater
       </button>
     );
 
     return (
-      <div key={curr.id}>
+      <div key={curr._id}>
         <div>
           <Link to={`/product/${curr._id}`}>{curr.name}</Link>
         </div>
@@ -41,7 +41,7 @@ const List = ({
           {upped}
           {subbed}
           {saved}
-          <button onClick={onClickCloseButton.bind(this, curr.id)}>X</button>
+          <button onClick={onClickCloseButton.bind(this, curr._id)}>X</button>
         </div>
       </div>
     );
