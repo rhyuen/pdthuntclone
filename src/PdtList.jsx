@@ -32,9 +32,9 @@ const List = ({
     return (
       <div key={curr.id}>
         <div>
-          <Link to={`/product/${curr.name}`}>{curr.name}</Link>
+          <Link to={`/product/${curr._id}`}>{curr.name}</Link>
         </div>
-        <div>{curr.description}</div>
+        <div>{curr.summaryDescription}</div>
         <div>{curr.category}</div>
         <span>{curr.count}</span>
         <div>

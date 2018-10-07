@@ -30,7 +30,7 @@ const Root = () => {
           <Route exact path="/" component={App} />
           <Route exact path="/subscribed" component={Subscribed} />
           <Route exact path="/me" component={Me} />
-          <Route exact path="/product/:name" component={ProductSingle} />
+          <Route exact path="/product/:id" component={ProductSingle} />
         </RouteContainer>
       </RootContent>
     </Router>

@@ -7,42 +7,27 @@ import Form from "./PdtForm.jsx";
 import PdtFilter from "./PdtFilter.jsx";
 import AdPanel from "./AdPanel.jsx";
 
+const devApiUrlRoot = "http://localhost:9873";
+
 class App extends Component {
   state = {
     data: [],
     filter: "All",
-    pdtName: "Newest Product Name",
-    pdtDescription: "Newest Description",
-    pdtCategory: "Newest Category",
-    adCollapsed: false
+    pdtName: `Newest Product Name ${Math.random() * 100}`,
+    pdtDescription: `Newest Description ${Math.random() * 100}`,
+    pdtCategory: `Newest Category ${Math.random() * 100}`,
+    adCollapsed: false,
+    isLoading: true
   };
 
-  // componentDidMount() {
-  //   const dataWithId = productFile.data.map(item => {
-  //     return Object.assign(item, {
-  //       id: uuid.v4(),
-  //       subscribed: false,
-  //       upped: false,
-  //       saved: false
-  //     });
-  //   });
-  //   this.setState(prevState => {
-  //     return {
-  //       ...prevState,
-  //       data: dataWithId
-  //     };
-  //   });
-  // }
-
   componentDidMount() {
-    const apiURL = "http://localhost:9873/product/";
+    const apiURL = `${devApiUrlRoot}/product`;
     axios
       .get(apiURL)
       .then(res => {
         const responseData = res.data.data;
         const dataWithId = responseData.map(item => {
           return Object.assign(item, {
-            id: uuid.v4(),
             subscribed: false,
             upped: false,
             saved: false
@@ -51,7 +36,8 @@ class App extends Component {
         this.setState(prevState => {
           return {
             ...prevState,
-            data: dataWithId
+            data: dataWithId,
+            isLoading: false
           };
         });
       })
@@ -85,36 +71,46 @@ class App extends Component {
     e.preventDefault();
     const name = this.state.pdtName;
     const category = this.state.pdtCategory;
-    const description = this.state.pdtDescription;
-    const fullDescription =
-      "A fuller description has not yet been added, but this will have to do for now.";
-    const id = uuid.v4();
-    let updated = this.state.data.concat({
-      id,
-      name,
-      category,
-      description,
-      fullDescription,
-      subscribed: false,
-      upped: false,
-      saved: false,
-      count: 0
-    });
-    if (name === "" || category === "" || description === "") {
+    const summaryDescription = this.state.pdtDescription;
+    // const fullDescription =
+    //   "A fuller description has not yet been added, but this will have to do for now.";
+    // const id = uuid.v4();
+    // let updated = this.state.data.concat({
+    //   id,
+    //   name,
+    //   category,
+    //   description,
+    //   fullDescription,
+    //   subscribed: false,
+    //   upped: false,
+    //   saved: false,
+    //   count: 0
+    // });
+    if (name === "" || category === "" || summaryDescription === "") {
       return this.setState(prevState => {
         return prevState;
       });
     }
-
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        data: updated,
-        pdtName: "",
-        pdtCategory: "",
-        pdtDescription: ""
-      };
-    });
+    const payload = { name, category, summaryDescription };
+    axios
+      .post(`${devApiUrlRoot}/product`, payload)
+      .then(res => {
+        console.log(res);
+        this.setState(prevState => {
+          const updated = prevState.data.concat(res.data);
+          return {
+            ...prevState,
+            data: updated,
+            pdtName: "",
+            pdtCategory: "",
+            pdtDescription: ""
+          };
+        });
+      })
+      .catch(e => {
+        console.log("post error");
+        console.log(e);
+      });
   };
 
   handleUpvote = (id, e) => {

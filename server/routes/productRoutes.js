@@ -4,172 +4,41 @@ const Product = require("../models/product.js");
 const router = express.Router();
 
 router.get("/", wrapAsync(async (req, res) => {
-    res.status(200).json({
-        data: [{
-                "name": "Lugia",
-                "description": "A Pokemon.",
-                "fullDescription": "A legendary fictional animal that is featured in a full length film.  It's part of the second iteration of the games where animals are pitted against one another by human owners.",
-                "category": "Animal",
-                "count": 91,
-                "voted": false
-            },
-            {
-                "name": "Pikachu",
-                "description": "an electric rodent",
-                "category": "Animal",
-                "count": 25,
-                "voted": false
-            },
-            {
-                "name": "Ho-oh",
-                "description": "A Pokemon that's a flying rooster.",
-                "category": "Animal",
-                "count": 250,
-                "voted": false
-            },
-            {
-                "name": "Orange",
-                "description": "A citris fruit.",
-                "category": "Food",
-                "count": 100,
-                "voted": false
-            },
-            {
-                "name": "Darth Vader",
-                "description": "The chosen one on the low ground.",
-                "category": "Character",
-                "count": 299,
-                "voted": false
-            },
-            {
-                "name": "Luke Skywalker",
-                "description": "Another chosen one.",
-                "category": "Character",
-                "count": 300,
-                "voted": false
-            },
-            {
-                "name": "Apple",
-                "description": "red fruit.",
-                "category": "Food",
-                "count": 22,
-                "voted": false
-            },
-            {
-                "name": "Collon",
-                "description": "Biscuits with synthetic cream inside.",
-                "category": "Food",
-                "count": 78,
-                "voted": false
-            },
-            {
-                "name": "Pocky",
-                "description": "Long, narrow biscuits with a frosted coating.",
-                "category": "Food",
-                "count": 23,
-                "voted": false
-            },
-            {
-                "name": "Car",
-                "description": "Vehicle for moving around",
-                "category": "Vehicle",
-                "count": 7654,
-                "voted": false
-            },
-            {
-                "name": "Tesla",
-                "description": "Electric Vehicle for moving around",
-                "category": "Vehicle",
-                "count": 90000,
-                "voted": false
-            },
-            {
-                "name": "Scooter",
-                "description": "Foot propelled vehicle for moving around",
-                "category": "Vehicle",
-                "count": 22,
-                "voted": false
-            },
-            {
-                "name": "Hover Board",
-                "description": "Not actually a hoverboard.  Just an electric unicycle.",
-                "category": "Vehicle",
-                "count": 1,
-                "voted": false
-            },
-            {
-                "name": "Solo",
-                "description": "a movie about han solo before he was kind of famous",
-                "category": "Movie",
-                "count": 7,
-                "voted": false
-            },
-            {
-                "name": "Iron Man",
-                "description": "a movie about a billionaire, playboy, philanthropist becoming a superhero.",
-                "category": "Movie",
-                "count": 9876,
-                "voted": false
-            },
-            {
-                "name": "Iron Man 2",
-                "description": "The sequel to a movie about a billionaire, playboy, philanthropist becoming a superhero.",
-                "category": "Movie",
-                "count": 23,
-                "voted": false
-            },
-            {
-                "name": "Lime",
-                "description": "A colourful but not so tasty fruit.  It's green",
-                "category": "Food",
-                "count": 4,
-                "voted": false
-            },
-            {
-                "name": "Lemon",
-                "description": "A colourful but not so tasty fruit.  It's yellow.  You can use it to make lemonade.",
-                "category": "Food",
-                "count": 5,
-                "voted": false
-            },
-            {
-                "name": "Rocket",
-                "description": "Sometimes they land.  Most of the time they don't.  They're often fire and forget.  Ever so wasteful.",
-                "category": "Vehicle",
-                "count": 34,
-                "voted": false
-            },
-            {
-                "name": "Batman",
-                "description": "Vengence is the night.  Except when it's not.  He also has a bunch of proteges that sometimes stick around.",
-                "category": "Character",
-                "count": 5,
-                "voted": false
-            },
-            {
-                "name": "Superman",
-                "description": "Up, up and away.  Batman is clearly better than super-man.",
-                "category": "Character",
-                "count": 6,
-                "voted": false
-            },
-            {
-                "name": "Lemonade",
-                "description": "A colourful and citrus beverage.  It's often a pale yellow with varying degrees of sweet and sourness.",
-                "category": "Food",
-                "count": 8,
-                "voted": false
-            }
-        ]
-    });
+    const data = await Product.find();
+    console.log(data);
+    const formedResponse = {
+        data: data
+    }
+    res.status(200).json(formedResponse);
 }));
 
-// router.post("/", wrapAsync((req, res) => {
-//     const {} = req.body;
-// }));
+router.post("/", wrapAsync(async (req, res) => {
+    const {
+        name,
+        summaryDescription,
+        category
+    } = req.body;
+    if (!name || !summaryDescription || !category) {
+        throw new Error("Bad Request, missing 'name', 'description' or 'category'.");
+    }
 
-// router.put("/:id", wrapAsync(async (req, res) => {
+    let latest = new Product({
+        name,
+        summaryDescription,
+        category
+    });
 
-// }));
+    let savedItem = await latest.save();
+    return res.status(201).json(savedItem);
+
+}));
+
+router.get("/:id", wrapAsync(async (req, res) => {
+    const identifier = req.params.id;
+    console.log(identifier);
+    const result = await Product.findById(identifier);
+    console.log(result)
+    res.status(200).json(result);
+}));
 
 module.exports = router;

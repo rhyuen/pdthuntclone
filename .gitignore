@@ -5,3 +5,4 @@ notes.txt
 .vscode
 /**/node_modules
 /**/keys.json
+/**/*.log
