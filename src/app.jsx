@@ -11,6 +11,9 @@ const devApiUrlRoot = "http://localhost:9873";
 class App extends Component {
   state = {
     data: [],
+    user: {
+      name: "Green Lantern"
+    },
     filter: "All",
     pdtName: `Product Name ${Math.floor(Math.random() * 100)}`,
     pdtDescription: `Summary Description ${Math.floor(Math.random() * 100)}`,
@@ -26,11 +29,12 @@ class App extends Component {
       .get(apiURL)
       .then(res => {
         const responseData = res.data.data;
+        const username = this.state.user.name;
         const dataWithId = responseData.map(item => {
           return Object.assign(item, {
-            subscribed: false,
-            upped: false,
-            saved: false
+            subscribed: item.subscribed.includes(username),
+            upped: item.count.includes(username),
+            saved: item.saved.includes(username)
           });
         });
         this.setState(prevState => {
@@ -80,20 +84,7 @@ class App extends Component {
     const name = this.state.pdtName;
     const category = this.state.pdtCategory;
     const summaryDescription = this.state.pdtDescription;
-    // const fullDescription =
-    //   "A fuller description has not yet been added, but this will have to do for now.";
-    // const id = uuid.v4();
-    // let updated = this.state.data.concat({
-    //   id,
-    //   name,
-    //   category,
-    //   description,
-    //   fullDescription,
-    //   subscribed: false,
-    //   upped: false,
-    //   saved: false,
-    //   count: 0
-    // });
+
     if (name === "" || category === "" || summaryDescription === "") {
       return this.setState(prevState => {
         return prevState;
@@ -129,24 +120,46 @@ class App extends Component {
   };
 
   handleUpvote = (id, e) => {
-    this.setState(prevState => {
-      let updated = prevState.data.map(curr => {
-        if (id !== curr._id) {
-          return curr;
-        } else if (curr.upped) {
-          return curr;
-        } else {
-          return Object.assign(curr, {
-            count: curr.count + 1,
-            upped: true
+    const upvotePending = this.state.data.filter(item => item._id === id);
+    if (upvotePending.upped) {
+      return;
+    }
+    const payload = { action: "UPVOTE", username: this.state.user.name };
+    axios
+      .put(`${devApiUrlRoot}/product/${id}`, payload)
+      .then(res => {
+        console.log(res.data);
+        this.setState(prevState => {
+          let updated = prevState.data.map(curr => {
+            return id !== curr._id
+              ? curr
+              : Object.assign(res.data, {
+                  upped: true,
+                  subscribed: false,
+                  saved: false
+                });
           });
-        }
+          return {
+            ...prevState,
+            data: updated
+          };
+        });
+      })
+      .catch(e => {
+        console.log(e);
       });
-      return {
-        ...prevState,
-        data: updated
-      };
-    });
+  };
+
+  handleAsyncUpvote = (id, e) => {
+    const payload = { action: "UPVOTE", username: this.state.user.name };
+    axios
+      .put(`${devApiRootUrl}/product/${id}`, payload)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
   };
 
   handleSubscribe = (id, e) => {
@@ -216,6 +229,7 @@ class App extends Component {
 
     return (
       <div>
+        <p>Logged in as: {this.state.user.name}</p>
         <Form
           onSubmit={this.handleSubmit}
           nameValue={this.state.pdtName}

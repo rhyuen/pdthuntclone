@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema({
-    name: String,
+    //TODO: Set name to Unique True
+    name: {
+        type: String,
+        unique: false
+    },
     category: String,
     summaryDescription: String,
     fullDescription: {
@@ -9,8 +13,8 @@ const productSchema = mongoose.Schema({
         default: "empty, thus far."
     },
     count: {
-        type: Number,
-        default: 0
+        type: [String],
+        default: []
     },
     saved: {
         type: [String],

@@ -39,8 +39,23 @@ router.get("/:id", wrapAsync(async (req, res) => {
     res.status(200).json(result);
 }));
 
-router.post("/:id", wrapAsync(async (req, res) => {
+router.put("/:id", wrapAsync(async (req, res) => {
+    const identifier = req.params.id;
+    const {
+        action,
+        username
+    } = req.body;
 
+    const result = await Product.findOneAndUpdate({
+        _id: identifier
+    }, {
+        $addToSet: {
+            count: username
+        }
+    }, {
+        new: true
+    });
+    res.status(200).json(result);
 }));
 
 module.exports = router;

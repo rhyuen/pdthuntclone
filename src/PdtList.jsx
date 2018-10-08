@@ -36,7 +36,7 @@ const List = ({
         </div>
         <div>{curr.summaryDescription}</div>
         <div>{curr.category}</div>
-        <span>{curr.count}</span>
+        <span>{curr.count.length}</span>
         <div>
           {upped}
           {subbed}

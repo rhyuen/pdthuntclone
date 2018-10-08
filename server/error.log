@@ -14,3 +14,5 @@
 {"message":"[2018-10-6 04:44:30]: CastError: Cast to ObjectId failed for value \"485f54b6-9ad9-4766-85b2-b48ef7ccc9f3\" at path \"_id\" for model \"Product\"","level":"error"}
 {"message":"[2018-10-6 04:46:20]: CastError: Cast to ObjectId failed for value \"485f54b6-9ad9-4766-85b2-b48ef7ccc9f3\" at path \"_id\" for model \"Product\"","level":"error"}
 {"message":"[2018-10-6 04:46:41]: CastError: Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Product\"","level":"error"}
+{"message":"[2018-10-7 18:52:07]: MongoError: server instance pool was destroyed","level":"error"}
+{"message":"[2018-10-7 18:52:17]: MongoError: server instance pool was destroyed","level":"error"}
