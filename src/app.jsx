@@ -12,7 +12,7 @@ class App extends Component {
   state = {
     data: [],
     user: {
-      name: "Green Lantern"
+      name: "Wonder Woman"
     },
     filter: "All",
     pdtName: `Product Name ${Math.floor(Math.random() * 100)}`,
@@ -29,18 +29,10 @@ class App extends Component {
       .get(apiURL)
       .then(res => {
         const responseData = res.data.data;
-        const username = this.state.user.name;
-        const dataWithId = responseData.map(item => {
-          return Object.assign(item, {
-            subscribed: item.subscribed.includes(username),
-            upped: item.count.includes(username),
-            saved: item.saved.includes(username)
-          });
-        });
         this.setState(prevState => {
           return {
             ...prevState,
-            data: dataWithId,
+            data: responseData,
             isLoading: false
           };
         });
@@ -94,15 +86,9 @@ class App extends Component {
     axios
       .post(`${devApiUrlRoot}/product`, payload)
       .then(res => {
-        console.log(res);
+        console.log(res.data);
         this.setState(prevState => {
-          const latest = Object.assign(res.data, {
-            subscribed: false,
-            upped: false,
-            saved: false
-          });
-
-          const updated = prevState.data.concat(latest);
+          const updated = prevState.data.concat(res.data);
           return {
             ...prevState,
             data: updated,
@@ -113,7 +99,7 @@ class App extends Component {
         });
       })
       .catch(e => {
-        //TODO: ERror message handling
+        //TODO: Error message handling
         console.log("post error");
         console.log(e);
       });
@@ -131,31 +117,14 @@ class App extends Component {
         console.log(res.data);
         this.setState(prevState => {
           let updated = prevState.data.map(curr => {
-            return id !== curr._id
-              ? curr
-              : Object.assign(res.data, {
-                  upped: true,
-                  subscribed: false,
-                  saved: false
-                });
+            //FIND CHANGE ENTITY AND RETURN UPDATED STATE
+            return id !== curr._id ? curr : res.data;
           });
           return {
             ...prevState,
             data: updated
           };
         });
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  };
-
-  handleAsyncUpvote = (id, e) => {
-    const payload = { action: "UPVOTE", username: this.state.user.name };
-    axios
-      .put(`${devApiRootUrl}/product/${id}`, payload)
-      .then(res => {
-        console.log(res.data);
       })
       .catch(e => {
         console.log(e);
@@ -180,6 +149,37 @@ class App extends Component {
         data: updated
       };
     });
+  };
+
+  handleAsyncSubscribe = (id, e) => {
+    const subscribePending = this.state.data.filter(item => item._id === id);
+    if (upvotePending.upped) {
+      return;
+    }
+    const payload = { action: "SUBSCRIBE", username: this.state.user.name };
+    axios
+      .put(`${devApiUrlRoot}/product/${id}`, payload)
+      .then(res => {
+        console.log(res.data);
+        this.setState(prevState => {
+          let updated = prevState.data.map(curr => {
+            return id !== curr._id
+              ? curr
+              : Object.assign(res.data, {
+                  upped: true,
+                  subscribed: true,
+                  saved: false
+                });
+          });
+          return {
+            ...prevState,
+            data: updated
+          };
+        });
+      })
+      .catch(e => {
+        console.log(e);
+      });
   };
 
   handleCloseButton = (id, e) => {
@@ -242,6 +242,7 @@ class App extends Component {
           onFilterChange={this.handleFilterChange}
         />
         <PdtList
+          username={this.state.user.name}
           data={filteredData}
           onClickSaveForLater={this.handleSaveForLater}
           onClickUpvote={this.handleUpvote}

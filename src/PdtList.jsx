@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const List = ({
+  username,
   data,
   onClickCloseButton,
   onClickUpvote,
@@ -11,17 +12,17 @@ const List = ({
   onClickSaveForLater
 }) => {
   const listOfItems = data.map(curr => {
-    const upped = curr.upped ? (
+    const upped = curr.count.includes(username) ? (
       <button>Upped</button>
     ) : (
       <button onClick={onClickUpvote.bind(this, curr._id)}>+</button>
     );
-    const subbed = curr.subscribed ? (
+    const subbed = curr.subscribed.includes(username) ? (
       <button>Subbed</button>
     ) : (
       <button onClick={onSubscribe.bind(this, curr._id)}>Subscribe</button>
     );
-    const saved = curr.saved ? (
+    const saved = curr.subscribed.includes(username) ? (
       <button>Saved</button>
     ) : (
       <button onClick={onClickSaveForLater.bind(this, curr._id)}>
