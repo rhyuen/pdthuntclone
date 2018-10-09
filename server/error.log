@@ -16,3 +16,9 @@
 {"message":"[2018-10-6 04:46:41]: CastError: Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Product\"","level":"error"}
 {"message":"[2018-10-7 18:52:07]: MongoError: server instance pool was destroyed","level":"error"}
 {"message":"[2018-10-7 18:52:17]: MongoError: server instance pool was destroyed","level":"error"}
+{"message":"[2018-10-8 20:05:01]: CastError: Cast to [string] failed for value \"[{\"count\":\"Superman\"}]\" at path \"count\"","level":"error"}
+{"message":"[2018-10-8 20:05:03]: CastError: Cast to [string] failed for value \"[{\"count\":\"Superman\"}]\" at path \"count\"","level":"error"}
+{"message":"[2018-10-8 20:05:50]: CastError: Cast to [string] failed for value \"[{\"count\":\"Superman\"}]\" at path \"count\"","level":"error"}
+{"message":"[2018-10-8 20:06:08]: CastError: Cast to [string] failed for value \"[{\"count\":\"Superman\"}]\" at path \"count\"","level":"error"}
+{"message":"[2018-10-8 20:06:30]: CastError: Cast to [string] failed for value \"[{\"count\":\"Superman\"}]\" at path \"count\"","level":"error"}
+{"message":"[2018-10-8 20:07:33]: CastError: Cast to [string] failed for value \"[{\"count\":\"Superman\"}]\" at path \"count\"","level":"error"}

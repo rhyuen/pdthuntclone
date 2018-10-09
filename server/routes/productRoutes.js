@@ -46,12 +46,35 @@ router.put("/:id", wrapAsync(async (req, res) => {
         username
     } = req.body;
 
+    let event = {}
+    console.log(username);
+    console.log(action);
+
+    switch (action) {
+        case "UPVOTE":
+            event = Object.assign(event, {
+                count: username
+            });
+            break;
+        case "SUBSCRIBE":
+            event = Object.assign(event, {
+                subscribed: username
+            });
+            break;
+        case "SAVE":
+            event = Object.assign(event, {
+                saved: username
+            });
+            break;
+        default:
+            throw new Error(`'${action}' is not a valid event type.`);
+
+    }
+
     const result = await Product.findOneAndUpdate({
         _id: identifier
     }, {
-        $addToSet: {
-            count: username
-        }
+        $addToSet: event
     }, {
         new: true
     });
