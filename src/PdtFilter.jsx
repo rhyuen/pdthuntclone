@@ -3,22 +3,50 @@ import uuid from "uuid";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+const ButtonContainer = styled.span`
+  margin: 0.1vw 0.1vw;
+`;
+const StyledButton = styled.button`
+  padding: 0.2vw 0.3vw;
+  font-size: 11px;
+  background: white;
+  border: 2px solid #4842b7;
+  border-radius: 5%;
+  color: #343434;
+  font-weight: 600;
+
+  :hover {
+    color: white;
+    background: #4842b7;
+  }
+`;
+
+const RootContainer = styled.div`
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid black;
+  padding: 1vw;
+  box-sizing: border-box;
+`;
 const Filter = ({ data, onFilterChange }) => {
   const types = data.map(item => item.category);
   const noDuplicateFilters = new Set(types);
   const filters = [...noDuplicateFilters].map(type => {
     return (
-      <span key={uuid.v4()}>
-        <button onClick={onFilterChange.bind(this, type)}>{type}</button>
-      </span>
+      <ButtonContainer key={uuid.v4()}>
+        <StyledButton onClick={onFilterChange.bind(this, type)}>
+          {type}
+        </StyledButton>
+      </ButtonContainer>
     );
   });
   const allFilter = (
-    <span key={uuid.v4()}>
-      <button onClick={onFilterChange.bind(this, "All")}>All</button>
-    </span>
+    <ButtonContainer key={uuid.v4()}>
+      <StyledButton onClick={onFilterChange.bind(this, "All")}>
+        All
+      </StyledButton>
+    </ButtonContainer>
   );
-  return [allFilter, ...filters];
+  return <RootContainer>{[allFilter, ...filters]}</RootContainer>;
 };
 
 Filter.propTypes = {

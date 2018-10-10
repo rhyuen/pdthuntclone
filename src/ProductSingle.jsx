@@ -54,7 +54,9 @@ class ProductSingle extends Component {
           <h1>{name}</h1>
           <h4>{category}</h4>
           <span>
-            <p>{count}</p>
+            <span>
+              <p>{count}</p>
+            </span>
           </span>
           <span>
             <p>

@@ -2,6 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+const FormContainer = styled.div`
+  background: white;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1vw;
+`;
+const StyledForm = styled.form``;
+
 const PdtForm = ({
   onSubmit,
   onInputChange,
@@ -10,33 +18,35 @@ const PdtForm = ({
   descriptionValue
 }) => {
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        type="text"
-        placeholder="Name"
-        name="pdtName"
-        onChange={onInputChange}
-        value={nameValue}
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Description"
-        name="pdtDescription"
-        onChange={onInputChange}
-        value={descriptionValue}
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Category"
-        name="pdtCategory"
-        onChange={onInputChange}
-        value={categoryValue}
-      />
-      <br />
-      <input type="submit" />
-    </form>
+    <FormContainer>
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          placeholder="Name"
+          name="pdtName"
+          onChange={onInputChange}
+          value={nameValue}
+        />
+        <br />
+        <input
+          type="text"
+          placeholder="Description"
+          name="pdtDescription"
+          onChange={onInputChange}
+          value={descriptionValue}
+        />
+        <br />
+        <input
+          type="text"
+          placeholder="Category"
+          name="pdtCategory"
+          onChange={onInputChange}
+          value={categoryValue}
+        />
+        <br />
+        <input type="submit" />
+      </form>
+    </FormContainer>
   );
 };
 
