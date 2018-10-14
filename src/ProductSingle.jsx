@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import styled from "styled-components";
-import productData from "./productdata.json";
 
 const StyledPdtSingle = styled.div`
   background: lavender;

@@ -2,7 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import ListItem from "./ProductListItem.jsx";
 
+const StyledList = styled.div`
+  margin-top: 1vw;
+  padding: 2vw 1vw;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+`;
 const List = ({
   username,
   data,
@@ -47,7 +54,13 @@ const List = ({
       </div>
     );
   });
-  return listOfItems;
+
+  return (
+    <StyledList>
+      <h3>All the items.</h3>
+      {listOfItems}
+    </StyledList>
+  );
 };
 
 List.propTypes = {

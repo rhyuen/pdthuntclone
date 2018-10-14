@@ -23,8 +23,11 @@ const StyledNavContainer = styled.div`
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;
+  margin-right: 1vw;
+
   &:hover {
-    background: palevioletred;
+    background: #f9f9f9;
+    text-decoration: underline;
   }
 `;
 

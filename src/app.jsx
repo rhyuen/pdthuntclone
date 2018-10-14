@@ -228,31 +228,50 @@ class App extends Component {
     const filteredData = this.getFilteredData();
 
     return (
-      <div>
-        <p>Logged in as: {this.state.user.name}</p>
-        <Form
-          onSubmit={this.handleSubmit}
-          nameValue={this.state.pdtName}
-          descriptionValue={this.state.pdtDescription}
-          categoryValue={this.state.pdtCategory}
-          onInputChange={this.handleInputChange}
-        />
-        <PdtFilter
-          data={this.state.data}
-          onFilterChange={this.handleFilterChange}
-        />
-        <PdtList
-          username={this.state.user.name}
-          data={filteredData}
-          onClickSaveForLater={this.handleSaveForLater}
-          onClickUpvote={this.handleUpvote}
-          onSubscribe={this.handleSubscribe}
-          onClickCloseButton={this.handleCloseButton}
-        />
+      <Root>
+        <MainPanel>
+          <TempUser>
+            Logged in as: <strong>{this.state.user.name}</strong>
+          </TempUser>
+          <Form
+            onSubmit={this.handleSubmit}
+            nameValue={this.state.pdtName}
+            descriptionValue={this.state.pdtDescription}
+            categoryValue={this.state.pdtCategory}
+            onInputChange={this.handleInputChange}
+          />
+          <PdtFilter
+            data={this.state.data}
+            onFilterChange={this.handleFilterChange}
+          />
+          <PdtList
+            username={this.state.user.name}
+            data={filteredData}
+            onClickSaveForLater={this.handleSaveForLater}
+            onClickUpvote={this.handleUpvote}
+            onSubscribe={this.handleSubscribe}
+            onClickCloseButton={this.handleCloseButton}
+          />
+        </MainPanel>
         <AdPanel />
-      </div>
+      </Root>
     );
   }
 }
+
+const TempUser = styled.section`
+  padding: 2vw 1vw;
+  background: lavender;
+`;
+
+const Root = styled.div`
+  display: flex;
+`;
+
+const MainPanel = styled.main`
+  background: papayawhip;
+  box-sizing: border-box;
+  width: 70%;
+`;
 
 export default App;

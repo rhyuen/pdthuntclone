@@ -4,13 +4,14 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const ButtonContainer = styled.span`
-  margin: 0.1vw 0.1vw;
+  margin-right: 0.25vw;
 `;
 const StyledButton = styled.button`
   padding: 0.2vw 0.3vw;
   font-size: 11px;
   background: white;
   border: 2px solid #4842b7;
+  text-transform: uppercase;
   border-radius: 5%;
   color: #343434;
   font-weight: 600;
@@ -23,9 +24,8 @@ const StyledButton = styled.button`
 
 const RootContainer = styled.div`
   background: rgba(0, 0, 0, 0.1);
-  border: 1px solid black;
   padding: 1vw;
-  box-sizing: border-box;
+  border: 1px solid black;
 `;
 const Filter = ({ data, onFilterChange }) => {
   const types = data.map(item => item.category);
