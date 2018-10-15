@@ -12,7 +12,7 @@ class App extends Component {
   state = {
     data: [],
     user: {
-      name: "Wonder Woman"
+      name: "Superman"
     },
     filter: "All",
     pdtName: `Product Name ${Math.floor(Math.random() * 100)}`,
@@ -227,35 +227,41 @@ class App extends Component {
   render() {
     const filteredData = this.getFilteredData();
 
-    return (
-      <Root>
-        <MainPanel>
-          <TempUser>
-            Logged in as: <strong>{this.state.user.name}</strong>
-          </TempUser>
-          <Form
-            onSubmit={this.handleSubmit}
-            nameValue={this.state.pdtName}
-            descriptionValue={this.state.pdtDescription}
-            categoryValue={this.state.pdtCategory}
-            onInputChange={this.handleInputChange}
-          />
-          <PdtFilter
-            data={this.state.data}
-            onFilterChange={this.handleFilterChange}
-          />
-          <PdtList
-            username={this.state.user.name}
-            data={filteredData}
-            onClickSaveForLater={this.handleSaveForLater}
-            onClickUpvote={this.handleUpvote}
-            onSubscribe={this.handleSubscribe}
-            onClickCloseButton={this.handleCloseButton}
-          />
-        </MainPanel>
-        <AdPanel />
-      </Root>
-    );
+    if (this.state.isLoading) {
+      return <h1>content loading</h1>;
+    } else if (this.state.isError) {
+      return <h1>something went wrong</h1>;
+    } else {
+      return (
+        <Root>
+          <MainPanel>
+            <TempUser>
+              Logged in as: <strong>{this.state.user.name}</strong>
+            </TempUser>
+            <Form
+              onSubmit={this.handleSubmit}
+              nameValue={this.state.pdtName}
+              descriptionValue={this.state.pdtDescription}
+              categoryValue={this.state.pdtCategory}
+              onInputChange={this.handleInputChange}
+            />
+            <PdtFilter
+              data={this.state.data}
+              onFilterChange={this.handleFilterChange}
+            />
+            <PdtList
+              username={this.state.user.name}
+              data={filteredData}
+              onClickSaveForLater={this.handleSaveForLater}
+              onClickUpvote={this.handleUpvote}
+              onSubscribe={this.handleSubscribe}
+              onClickCloseButton={this.handleCloseButton}
+            />
+          </MainPanel>
+          <AdPanel />
+        </Root>
+      );
+    }
   }
 }
 

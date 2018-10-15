@@ -18,12 +18,14 @@ module.exports = (app) => {
     }));
     app.use(morgan("dev"));
     mongoose.connection.openUri(config.getSecrets().db, {
-            useNewUrlParser: true
+            useNewUrlParser: true,
+            reconnectInterval: 1000,
+            reconnectTries: 20
         })
         .once("open", () => {
             console.log("DB Connection OPEN.");
         }).on("error", e => {
             console.log("ERR with DB CONN");
-            logger.error(`MONGODB ERROR: ${e}`);
+            logger.error(`[MONGODB ERROR]: ${e}`);
         });
 };

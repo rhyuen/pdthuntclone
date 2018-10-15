@@ -1,13 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Card from "./Card.jsx";
 
-const FormContainer = styled.div`
-  background: white;
-  box-sizing: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 1vw;
-`;
 const StyledForm = styled.form``;
 
 const PdtForm = ({
@@ -18,7 +13,7 @@ const PdtForm = ({
   descriptionValue
 }) => {
   return (
-    <FormContainer>
+    <Card header="Moar products.">
       <form onSubmit={onSubmit}>
         <input
           type="text"
@@ -46,7 +41,7 @@ const PdtForm = ({
         <br />
         <input type="submit" />
       </form>
-    </FormContainer>
+    </Card>
   );
 };
 

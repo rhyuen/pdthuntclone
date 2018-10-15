@@ -1,8 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const ProductListItem = () => {
-  return <div>asdf</div>;
+const ListItem = styled.div`
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1vw 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+`;
+const ProductListItem = props => {
+  return <ListItem>{props.children}</ListItem>;
 };
 
 export default ProductListItem;

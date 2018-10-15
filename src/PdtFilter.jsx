@@ -25,7 +25,6 @@ const StyledButton = styled.button`
 const RootContainer = styled.div`
   background: rgba(0, 0, 0, 0.1);
   padding: 1vw;
-  border: 1px solid black;
 `;
 const Filter = ({ data, onFilterChange }) => {
   const types = data.map(item => item.category);

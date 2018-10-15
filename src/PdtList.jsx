@@ -2,14 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Card from "./Card.jsx";
 import ListItem from "./ProductListItem.jsx";
 
-const StyledList = styled.div`
-  margin-top: 1vw;
-  padding: 2vw 1vw;
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-`;
 const List = ({
   username,
   data,
@@ -20,50 +15,91 @@ const List = ({
 }) => {
   const listOfItems = data.map(curr => {
     const upped = curr.count.includes(username) ? (
-      <button>Upped</button>
+      <ClickedButton>{curr.count.length}</ClickedButton>
     ) : (
-      <button onClick={onClickUpvote.bind(this, curr._id)}>+</button>
+      <ItemButton onClick={onClickUpvote.bind(this, curr._id)}>+</ItemButton>
     );
     const subbed = curr.subscribed.includes(username) ? (
-      <button>Subbed</button>
+      <ClickedButton>Subbed</ClickedButton>
     ) : (
-      <button onClick={onSubscribe.bind(this, curr._id)}>Subscribe</button>
+      <ItemButton onClick={onSubscribe.bind(this, curr._id)}>Sub</ItemButton>
     );
     const saved = curr.subscribed.includes(username) ? (
-      <button>Saved</button>
+      <ClickedButton>Saved</ClickedButton>
     ) : (
-      <button onClick={onClickSaveForLater.bind(this, curr._id)}>
-        SaveForLater
-      </button>
+      <ItemButton onClick={onClickSaveForLater.bind(this, curr._id)}>
+        Save
+      </ItemButton>
     );
 
     return (
-      <div key={curr._id}>
-        <div>
-          <Link to={`/product/${curr._id}`}>{curr.name}</Link>
-        </div>
-        <div>{curr.summaryDescription}</div>
-        <div>{curr.category}</div>
-        <span>{curr.count.length}</span>
-        <div>
-          {upped}
-          {subbed}
-          {saved}
-          <button onClick={onClickCloseButton.bind(this, curr._id)}>X</button>
-        </div>
-      </div>
+      <ListItem key={curr._id}>
+        <FigureContainer />
+        <TextContainer>
+          <div>
+            <Link to={`/product/${curr._id}`}>{curr.name}</Link>
+          </div>
+          <div>{curr.summaryDescription}</div>
+          <div>{curr.category}</div>
+          <ItemControl>
+            {upped}
+            {subbed}
+            {saved}
+            <ItemButton onClick={onClickCloseButton.bind(this, curr._id)}>
+              X
+            </ItemButton>
+          </ItemControl>
+        </TextContainer>
+      </ListItem>
     );
   });
 
-  return (
-    <StyledList>
-      <h3>All the items.</h3>
-      {listOfItems}
-    </StyledList>
-  );
+  return <Card header="All the items are here.">{listOfItems}</Card>;
 };
 
+const FigureContainer = styled.figure`
+  margin: 0;
+  background: #4842b7;
+  width: 4vw;
+  height: 4vw;
+`;
+
+const TextContainer = styled.summary`
+  box-sizing: border-box;
+  padding-left: 1vw;
+  font-size: 16px;
+  line-height: 1.3333vw;
+  position: relative;
+  width: 100%;
+`;
+
+const ItemControl = styled.aside`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+`;
+
+const ItemButton = styled.button`
+  background: white;
+  border: 2px solid #4842b7;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 2px;
+
+  &:hover {
+    background: #4842b7;
+    color: white;
+  }
+`;
+
+const ClickedButton = ItemButton.extend`
+  background: #4842b7;
+  color: white;
+`;
+
 List.propTypes = {
+  username: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
   onClickCloseButton: PropTypes.func.isRequired,
   onClickUpvote: PropTypes.func.isRequired,
