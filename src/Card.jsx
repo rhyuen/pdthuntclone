@@ -20,16 +20,16 @@ const CardHeader = styled.h1`
   padding-bottom: 1vw;
 `;
 
-const Root = props => {
-  if (props.header) {
+const Root = ({ header, children }) => {
+  if (header) {
     return (
       <Card>
-        <CardHeader>{props.header}</CardHeader>
-        {props.children}
+        <CardHeader>{header}</CardHeader>
+        {children}
       </Card>
     );
   } else {
-    return <Card>{props.children}</Card>;
+    return <Card>{children}</Card>;
   }
 };
 

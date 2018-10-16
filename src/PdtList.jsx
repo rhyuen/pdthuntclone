@@ -24,7 +24,7 @@ const List = ({
     ) : (
       <ItemButton onClick={onSubscribe.bind(this, curr._id)}>Sub</ItemButton>
     );
-    const saved = curr.subscribed.includes(username) ? (
+    const saved = curr.saved.includes(username) ? (
       <ClickedButton>Saved</ClickedButton>
     ) : (
       <ItemButton onClick={onClickSaveForLater.bind(this, curr._id)}>

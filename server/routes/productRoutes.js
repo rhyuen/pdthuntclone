@@ -68,7 +68,6 @@ router.put("/:id", wrapAsync(async (req, res) => {
             break;
         default:
             throw new Error(`'${action}' is not a valid event type.`);
-
     }
 
     const result = await Product.findOneAndUpdate({
