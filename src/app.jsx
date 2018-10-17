@@ -12,7 +12,7 @@ class App extends Component {
   state = {
     data: [],
     user: {
-      name: "Steppenwolf"
+      name: "Darkseid"
     },
     filter: "All",
     pdtName: `Product Name ${Math.floor(Math.random() * 100)}`,
@@ -205,23 +205,6 @@ class App extends Component {
       });
   };
 
-  // handleSaveForLater = (id, e) => {
-  //   this.setState(prevState => {
-  //     let updated = prevState.data.map(curr => {
-  //       if (id !== curr._id || curr.saved) {
-  //         return curr;
-  //       } else {
-  //         const change = { saved: true };
-  //         return Object.assign(curr, change);
-  //       }
-  //     });
-  //     return {
-  //       ...prevState,
-  //       data: updated
-  //     };
-  //   });
-  // };
-
   handleFilterChange = (name, e) => {
     this.setState(prevState => {
       return {
@@ -280,7 +263,7 @@ class App extends Component {
 
 const TempUser = styled.section`
   padding: 2vw 1vw;
-  background: lavender;
+  background: #f9f9f9;
 `;
 
 const Root = styled.div`
@@ -288,9 +271,12 @@ const Root = styled.div`
 `;
 
 const MainPanel = styled.main`
-  background: papayawhip;
   box-sizing: border-box;
   width: 70%;
+
+  @media (max-width: 1023px) {
+    width: 100%;
+  }
 `;
 
 export default App;

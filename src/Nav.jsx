@@ -24,11 +24,16 @@ const StyledNavContainer = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
   margin-right: 1vw;
+  height: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  border-bottom: 3px solid transparent;
 
   &:hover {
-    background: #f9f9f9;
-    text-decoration: underline;
-  }
+    border-bottom: 3px solid #4842b7;
+  
 `;
 
 const Nav = () => {

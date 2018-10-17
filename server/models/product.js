@@ -24,6 +24,10 @@ const productSchema = mongoose.Schema({
         type: [String],
         default: []
     }
+}, {
+    timestampes: {
+        createdAt: "created_at"
+    }
 });
 
 module.exports = mongoose.model("Product", productSchema);

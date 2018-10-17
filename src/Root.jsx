@@ -18,7 +18,7 @@ const RootContent = styled.div`
 const RouteContainer = styled.div`
   position: relative;
   top: 5vh;
-  background: lavender;
+  background: #f9f9f9;
   width: 100%;
 `;
 const Root = () => {

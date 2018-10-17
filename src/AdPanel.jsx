@@ -1,40 +1,45 @@
 import React from "react";
 import Card from "./Card.jsx";
 import styled from "styled-components";
+import SideList from "./SideList.jsx";
+import Footer from "./Footer.jsx";
 
 const Root = styled.aside`
   width: 30%;
-  background: papayawhip;
+  background: #f9f9f9;
   box-sizing: border-box;
   padding: 1vw;
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: block;
+  }
 `;
 const AdPanel = () => {
   return (
     <Root>
-      <div>
-        On Item Click Overlay.
-        <br />
-        On Search Click Overlay.
-        <br />
-      </div>
+      <SideList
+        header="Header stuff is here."
+        subheader="Subheader and some other frivoulous stuff."
+      />
       <section>
-        <h1>News</h1>
+        <Card>
+          <AdImage />
+          <AdHeader>An overwhelmingly biased advertorial.</AdHeader>
+          <AdButton>Download me now.</AdButton>
+        </Card>
       </section>
-      <Card>
-        <AdImage />
-        <AdHeader>An overwhelmingly biased advertorial.</AdHeader>
-        <AdButton>Download me now.</AdButton>
-      </Card>
-      <section>
-        <h1>Jobs Card</h1>
-      </section>
+      <SideList
+        header="More Header is here and some other stuff."
+        subheader="Subheader and some other stuff to get me to the next line."
+      />
       <Card>
         <AdImage />
         <AdHeader>For all the messages.</AdHeader>
-        <AdInput placeholder="let me email you, it's the best." />
+        <AdInput placeholder="Let me email you; it's the best." />
         <AdButton>Subscribe</AdButton>
       </Card>
-      <section>Footer</section>
+      <Footer />
     </Root>
   );
 };

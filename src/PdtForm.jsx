@@ -5,6 +5,34 @@ import Card from "./Card.jsx";
 
 const StyledForm = styled.form``;
 
+const StyledTextInput = styled.input`
+  border: 1px solid transparent;
+  border-bottom: 3px solid #f9f9f9;
+  margin-bottom: 1vw;
+  &:focus {
+    border-bottom: 3px solid #4842b7;
+    outline: none;
+  }
+`;
+
+const StyledSubmit = styled.input`
+  background: #4842b7;
+  color: white;
+  border: 2px solid #4842b7;
+  padding: 0.5vw 1vw;
+  box-sizing: border-box;
+
+  &:hover {
+    background: white;
+    color: #343434;
+    border: 2px solid #4842b7;
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
 const PdtForm = ({
   onSubmit,
   onInputChange,
@@ -13,9 +41,9 @@ const PdtForm = ({
   descriptionValue
 }) => {
   return (
-    <Card header="Moar products.">
-      <form onSubmit={onSubmit}>
-        <input
+    <Card header="ADD MOAR THINGS.">
+      <StyledForm onSubmit={onSubmit}>
+        <StyledTextInput
           type="text"
           placeholder="Name"
           name="pdtName"
@@ -23,7 +51,7 @@ const PdtForm = ({
           value={nameValue}
         />
         <br />
-        <input
+        <StyledTextInput
           type="text"
           placeholder="Description"
           name="pdtDescription"
@@ -31,7 +59,7 @@ const PdtForm = ({
           value={descriptionValue}
         />
         <br />
-        <input
+        <StyledTextInput
           type="text"
           placeholder="Category"
           name="pdtCategory"
@@ -39,8 +67,8 @@ const PdtForm = ({
           value={categoryValue}
         />
         <br />
-        <input type="submit" />
-      </form>
+        <StyledSubmit type="submit" value="MOAR!" />
+      </StyledForm>
     </Card>
   );
 };
