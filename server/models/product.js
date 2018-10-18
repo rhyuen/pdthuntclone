@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema({
     //TODO: Set name to Unique True
+    //TODO: add an author.
     name: {
         type: String,
         unique: false

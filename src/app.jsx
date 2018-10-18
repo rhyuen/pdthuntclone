@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import PdtList from "./PdtList.jsx";
+import ErrorPage from "./ErrorPage.jsx";
+import LoadingPage from "./LoadingPage.jsx";
 import Form from "./PdtForm.jsx";
 import PdtFilter from "./PdtFilter.jsx";
 import AdPanel from "./AdPanel.jsx";
@@ -38,8 +40,7 @@ class App extends Component {
         });
       })
       .catch(e => {
-        //TODO: Make Error Disclaimer/Message show up.
-        console.log(e);
+        //TODO: POST a request to a server with the error.
         this.setState(prevState => {
           return {
             ...prevState,
@@ -102,6 +103,12 @@ class App extends Component {
         //TODO: Error message handling
         console.log("post error");
         console.log(e);
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            isError: true
+          };
+        });
       });
   };
 
@@ -224,9 +231,9 @@ class App extends Component {
     const filteredData = this.getFilteredData();
 
     if (this.state.isLoading) {
-      return <h1>content loading</h1>;
+      return <LoadingPage />;
     } else if (this.state.isError) {
-      return <h1>something went wrong</h1>;
+      return <ErrorPage />;
     } else {
       return (
         <Root>
