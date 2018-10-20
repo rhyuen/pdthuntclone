@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import Card from "./Card.jsx";
 import styled from "styled-components";
+import validator from "validator";
 import SideList from "./SideList.jsx";
 import Footer from "./Footer.jsx";
 
@@ -15,34 +16,6 @@ const Root = styled.aside`
     display: block;
   }
 `;
-const AdPanel = () => {
-  return (
-    <Root>
-      <SideList
-        header="Header stuff is here."
-        subheader="Subheader and some other frivoulous stuff."
-      />
-      <section>
-        <Card>
-          <AdImage />
-          <AdHeader>An overwhelmingly biased advertorial.</AdHeader>
-          <AdButton>Download me now.</AdButton>
-        </Card>
-      </section>
-      <SideList
-        header="More Header is here and some other stuff."
-        subheader="Subheader and some other stuff to get me to the next line."
-      />
-      <Card>
-        <AdImage />
-        <AdHeader>For all the messages.</AdHeader>
-        <AdInput placeholder="Let me email you; it's the best." />
-        <AdButton>Subscribe</AdButton>
-      </Card>
-      <Footer />
-    </Root>
-  );
-};
 
 const AdImage = styled.figure`
   width: 100%;
@@ -81,5 +54,89 @@ const AdButton = styled.button`
     outline: none;
   }
 `;
+
+class AdPanel extends Component {
+  state = {
+    adCollapsed: false,
+    emailCollapsed: false,
+    emailValidationWarning: false,
+    emailSubForm: ""
+  };
+
+  handleEmailInputChange = e => {
+    const currentValue = e.target.value;
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        emailSubForm: currentValue
+      };
+    });
+  };
+  handleEmailClick = e => {
+    if (!validator.isEmail(this.state.emailSubForm)) {
+      return;
+    }
+    //TODO: POST REQUEST to email server.
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        emailCollapsed: true,
+        emailSubForm: ""
+      };
+    });
+  };
+
+  handleAdClick = () => {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        adCollapsed: true
+      };
+    });
+  };
+  render() {
+    return (
+      <Root>
+        <SideList
+          header="Header stuff is here."
+          subheader="Subheader and some other frivoulous stuff."
+        />
+        {this.state.adCollapsed ? (
+          <div />
+        ) : (
+          <section>
+            <Card>
+              <AdImage />
+              <AdHeader>An overwhelmingly biased advertorial.</AdHeader>
+              <AdButton onClick={this.handleAdClick}>Download me now.</AdButton>
+            </Card>
+          </section>
+        )}
+
+        <SideList
+          header="More Header is here and some other stuff."
+          subheader="Subheader and some other stuff to get me to the next line."
+        />
+        {this.state.emailCollapsed ? (
+          <div />
+        ) : (
+          <section>
+            <Card>
+              <AdImage />
+              <AdHeader>For all the messages.</AdHeader>
+              <AdInput
+                placeholder="Let me email you; it's the best."
+                onChange={this.handleEmailInputChange}
+                value={this.state.emailSubForm}
+              />
+              <AdButton onClick={this.handleEmailClick}>Subscribe</AdButton>
+            </Card>
+          </section>
+        )}
+        <Footer />
+      </Root>
+    );
+  }
+}
 
 export default AdPanel;

@@ -20,7 +20,6 @@ class App extends Component {
     pdtName: `Product Name ${Math.floor(Math.random() * 100)}`,
     pdtDescription: `Summary Description ${Math.floor(Math.random() * 100)}`,
     pdtCategory: `Category ${Math.floor(Math.random() * 100)}`,
-    adCollapsed: false,
     isLoading: true,
     isError: false
   };
