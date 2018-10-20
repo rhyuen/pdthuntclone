@@ -9,7 +9,7 @@ const StyledNav = styled.nav`
   width: 100vw;
   height: 5vh;
   box-sizing: border-box;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid ${props => props.theme.borderColour};
   justify-content: center;
   align-items: center;
   z-index: 5;
@@ -19,7 +19,6 @@ const StyledNavContainer = styled.div`
   align-items: center;
   width: 1024px;
   height: 100%;
-  background: white;
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -32,7 +31,7 @@ const StyledLink = styled(Link)`
   border-bottom: 3px solid transparent;
 
   &:hover {
-    border-bottom: 3px solid #4842b7;
+    border-bottom: 3px solid ${props => props.theme.primaryColour};
   
 `;
 

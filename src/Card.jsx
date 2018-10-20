@@ -5,7 +5,7 @@ const Card = styled.section`
   padding: 1vw;
   box-sizing: border-box;
   background: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid ${props => props.theme.borderColour};
 `;
 
 const CardHeader = styled.h1`

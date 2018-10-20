@@ -7,25 +7,25 @@ const StyledForm = styled.form``;
 
 const StyledTextInput = styled.input`
   border: 1px solid transparent;
-  border-bottom: 3px solid #f9f9f9;
+  border-bottom: 3px solid ${props => props.theme.backgroundColour};
   margin-bottom: 1vw;
   &:focus {
-    border-bottom: 3px solid #4842b7;
+    border-bottom: 3px solid ${props => props.theme.primaryColour};
     outline: none;
   }
 `;
 
 const StyledSubmit = styled.input`
-  background: #4842b7;
+  background: ${props => props.theme.primaryColour};
   color: white;
-  border: 2px solid #4842b7;
+  border: 2px solid ${props => props.theme.primaryColour};
   padding: 0.5vw 1vw;
   box-sizing: border-box;
 
   &:hover {
     background: white;
     color: #343434;
-    border: 2px solid #4842b7;
+    border: 2px solid ${props => props.theme.primaryColour};
   }
 
   &:focus {

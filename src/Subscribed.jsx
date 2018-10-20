@@ -1,17 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
+import axios from "axios";
 import styled from "styled-components";
 
-const Root = () => {
-  return (
-    <div>
-      Subscribed page.
-      <br />
-      Saved stuff goes here you know. Should you call home to stuff.
-      <br />
-      Should you be stored in a DB or in state? <br />
-      The Plot thickens.
-    </div>
-  );
-};
+class Subscribed extends Component {
+  state = {};
 
-export default Root;
+  componentDidMount() {}
+
+  render() {
+    return <div>Subscribed page.</div>;
+  }
+}
+
+export default Subscribed;

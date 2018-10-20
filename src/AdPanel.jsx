@@ -7,7 +7,7 @@ import Footer from "./Footer.jsx";
 
 const Root = styled.aside`
   width: 30%;
-  background: #f9f9f9;
+  background: inherit;
   box-sizing: border-box;
   padding: 1vw;
   display: none;
@@ -20,7 +20,7 @@ const Root = styled.aside`
 const AdImage = styled.figure`
   width: 100%;
   height: 4vw;
-  background: #4842b7;
+  background: ${props => props.theme.primaryColour};
   margin: 0 auto;
 `;
 const AdHeader = styled.h1`
@@ -28,7 +28,7 @@ const AdHeader = styled.h1`
   font-size: 15px;
 `;
 const AdInput = styled.input`
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid ${props => props.theme.borderColor};
   width: 100%;
   margin-bottom: 1vw;
   height: 1.5vw;
@@ -37,12 +37,12 @@ const AdInput = styled.input`
 
   &:focus {
     outline: none;
-    border-bottom: 2px solid #4842b7;
+    border-bottom: 2px solid ${props => props.theme.primaryColour};
   }
 `;
 const AdButton = styled.button`
   text-transform: uppercase;
-  background: #4842b7;
+  background: ${props => props.theme.primaryColour};
   box-sizing: border-box;
   color: white;
   border: 0;

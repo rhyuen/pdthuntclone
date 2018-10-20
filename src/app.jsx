@@ -10,6 +10,23 @@ import AdPanel from "./AdPanel.jsx";
 
 const devApiUrlRoot = "http://localhost:9873";
 
+const TempUser = styled.section`
+  padding: 2vw 1vw;
+  background: ${props => props.theme.backgroundColour};
+`;
+
+const Root = styled.div`
+  display: flex;
+`;
+
+const MainPanel = styled.main`
+  box-sizing: border-box;
+  width: 70%;
+
+  @media (max-width: 1023px) {
+    width: 100%;
+  }
+`;
 class App extends Component {
   state = {
     data: [],
@@ -266,23 +283,5 @@ class App extends Component {
     }
   }
 }
-
-const TempUser = styled.section`
-  padding: 2vw 1vw;
-  background: #f9f9f9;
-`;
-
-const Root = styled.div`
-  display: flex;
-`;
-
-const MainPanel = styled.main`
-  box-sizing: border-box;
-  width: 70%;
-
-  @media (max-width: 1023px) {
-    width: 100%;
-  }
-`;
 
 export default App;

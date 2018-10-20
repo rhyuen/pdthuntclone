@@ -1,12 +1,17 @@
 import React from "react";
 import { HashRouter as Router, Route } from "react-router-dom";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import App from "./App.jsx";
 import Nav from "./Nav.jsx";
 import Subscribed from "./Subscribed.jsx";
 import Me from "./Me.jsx";
 import ProductSingle from "./ProductSingle.jsx";
-// import Personal from "./Personal.jsx";
+
+const currentTheme = {
+  primaryColour: "#4842b7",
+  backgroundColour: "#f9f9f9",
+  borderColour: "rgba(0, 0, 0, 0.1)"
+};
 
 const RootContent = styled.div`
   width: 100%;
@@ -18,21 +23,24 @@ const RootContent = styled.div`
 const RouteContainer = styled.div`
   position: relative;
   top: 5vh;
-  background: #f9f9f9;
+  background: ${currentTheme.backgroundColour};
   width: 100%;
 `;
+
 const Root = () => {
   return (
     <Router>
-      <RootContent>
-        <Nav />
-        <RouteContainer>
-          <Route exact path="/" component={App} />
-          <Route exact path="/subscribed" component={Subscribed} />
-          <Route exact path="/me" component={Me} />
-          <Route exact path="/product/:id" component={ProductSingle} />
-        </RouteContainer>
-      </RootContent>
+      <ThemeProvider theme={currentTheme}>
+        <RootContent>
+          <Nav />
+          <RouteContainer>
+            <Route exact path="/" component={App} />
+            <Route exact path="/subscribed" component={Subscribed} />
+            <Route exact path="/me" component={Me} />
+            <Route exact path="/product/:id" component={ProductSingle} />
+          </RouteContainer>
+        </RootContent>
+      </ThemeProvider>
     </Router>
   );
 };

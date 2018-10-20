@@ -12,6 +12,10 @@ router.get("/", wrapAsync(async (req, res) => {
     res.status(200).json(formedResponse);
 }));
 
+// router.get("/subscribed", wrapAsync(async (req, res) => {
+
+// }));
+
 router.post("/", wrapAsync(async (req, res) => {
     const {
         name,

@@ -5,6 +5,46 @@ import styled from "styled-components";
 import Card from "./Card.jsx";
 import ListItem from "./ProductListItem.jsx";
 
+const FigureContainer = styled.figure`
+  margin: 0;
+  background: ${props => props.theme.primaryColour};
+  width: 4vw;
+  height: 4vw;
+`;
+
+const TextContainer = styled.summary`
+  box-sizing: border-box;
+  padding-left: 1vw;
+  font-size: 16px;
+  line-height: 1.3333vw;
+  position: relative;
+  width: 100%;
+`;
+
+const ItemControl = styled.aside`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+`;
+
+const ItemButton = styled.button`
+  background: white;
+  border: 2px solid ${props => props.theme.primaryColour};
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 2px;
+
+  &:hover {
+    background: ${props => props.theme.primaryColour};
+    color: white;
+  }
+`;
+
+const ClickedButton = ItemButton.extend`
+  background: ${props => props.theme.primaryColour};
+  color: white;
+`;
 const List = ({
   username,
   data,
@@ -56,47 +96,6 @@ const List = ({
 
   return <Card header="All the items are here.">{listOfItems}</Card>;
 };
-
-const FigureContainer = styled.figure`
-  margin: 0;
-  background: #4842b7;
-  width: 4vw;
-  height: 4vw;
-`;
-
-const TextContainer = styled.summary`
-  box-sizing: border-box;
-  padding-left: 1vw;
-  font-size: 16px;
-  line-height: 1.3333vw;
-  position: relative;
-  width: 100%;
-`;
-
-const ItemControl = styled.aside`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-`;
-
-const ItemButton = styled.button`
-  background: white;
-  border: 2px solid #4842b7;
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 600;
-  margin-left: 2px;
-
-  &:hover {
-    background: #4842b7;
-    color: white;
-  }
-`;
-
-const ClickedButton = ItemButton.extend`
-  background: #4842b7;
-  color: white;
-`;
 
 List.propTypes = {
   username: PropTypes.string.isRequired,

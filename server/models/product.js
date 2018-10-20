@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema({
-    //TODO: Set name to Unique True
-    //TODO: add an author.
     name: {
         type: String,
-        unique: false
+        unique: true
     },
-    category: String,
+    category: {
+        type: [String],
+        default: []
+    },
     summaryDescription: String,
     fullDescription: {
         type: String,
@@ -24,6 +25,9 @@ const productSchema = mongoose.Schema({
     subscribed: {
         type: [String],
         default: []
+    },
+    author: {
+        type: String,
     }
 }, {
     timestampes: {

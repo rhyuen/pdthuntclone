@@ -8,7 +8,6 @@ const Container = styled.section`
 const ConHeader = styled.h1`
   font-size: 16px;
   font-weight: 600;
-  color: #343434;
   box-sizing: border-box;
   margin-bottom: 0.5vw;
 `;
@@ -19,7 +18,7 @@ const ConSubHeader = styled.h2`
   font-weight: 400;
   padding-bottom: 1vw;
   margin-bottom: 1vw;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 const Root = ({ header, subheader, children }) => {
