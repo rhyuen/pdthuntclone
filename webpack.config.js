@@ -1,5 +1,6 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     entry: {
@@ -9,14 +10,18 @@ module.exports = {
         path: path.join(__dirname, "dist"),
         filename: "bundle.js"
     },
-    module:{
+    module: {
         loaders: [{
             test: /\.jsx$/,
             exclude: /node_modules/,
             loader: "babel-loader"
-        },{
+        }, {
             test: /\.json$/,
             loader: "json-loader"
+        }, {
+            test: /\.(png|jpg|gif)$/,
+            loader: "file-loader"
+
         }]
     },
     plugins: [
@@ -25,6 +30,17 @@ module.exports = {
             filename: "index.html",
             inject: "body",
             title: "Front End Boilerplate Project"
+        }),
+        new CopyWebpackPlugin([{
+            from: "./src/images/*.ico",
+            flatten: true,
+            test: /\.(ico)$/,
+            ignore: ["*.jsx"],
+            toType: "file"
+
+        }], {
+            debug: "debug",
+            copyUnmodified: true
         })
     ]
 };
