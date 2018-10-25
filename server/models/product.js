@@ -30,7 +30,7 @@ const productSchema = mongoose.Schema({
         type: String,
     }
 }, {
-    timestampes: {
+    timestamps: {
         createdAt: "created_at"
     }
 });

@@ -154,26 +154,6 @@ class App extends Component {
       });
   };
 
-  // handleSubscribe = (id, e) => {
-  //   this.setState(prevState => {
-  //     let updated = prevState.data.map(curr => {
-  //       if (id !== curr._id) {
-  //         return curr;
-  //       } else if (curr.subscribed) {
-  //         return curr;
-  //       } else {
-  //         return Object.assign(curr, {
-  //           subscribed: true
-  //         });
-  //       }
-  //     });
-  //     return {
-  //       ...prevState,
-  //       data: updated
-  //     };
-  //   });
-  // };
-
   handleSubscribe = (id, e) => {
     const payload = { action: "SUBSCRIBE", username: this.state.user.name };
     axios
@@ -215,6 +195,10 @@ class App extends Component {
         this.setState(prevState => {
           let updated = prevState.data.map(curr => {
             //FIND CHANGE ENTITY AND RETURN UPDATED STATE
+            // if (id === curr._id) {
+            //   console.log(curr);
+            //   console.log(res.data);
+            // }
             return id !== curr._id ? curr : res.data;
           });
           return {
@@ -229,18 +213,29 @@ class App extends Component {
   };
 
   handleFilterChange = (name, e) => {
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        filter: name
-      };
-    });
+    if (name === "All") {
+      this.setState(prevState => {
+        return {
+          ...prevState,
+          filter: name
+        };
+      });
+    } else {
+      this.setState(prevState => {
+        return {
+          ...prevState,
+          filter: name
+        };
+      });
+    }
   };
 
   getFilteredData = () => {
     return this.state.filter === "All"
       ? this.state.data
-      : this.state.data.filter(datum => datum.category === this.state.filter);
+      : this.state.data.filter(
+          datum => datum.category[0].toUpperCase() === this.state.filter
+        );
   };
 
   render() {

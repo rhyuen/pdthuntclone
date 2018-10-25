@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import Card from "./Card.jsx";
 import styled from "styled-components";
 import validator from "validator";
@@ -17,10 +18,11 @@ const Root = styled.aside`
   }
 `;
 
-const AdImage = styled.figure`
+const AdImage = styled.img`
   width: 100%;
   height: 4vw;
   background: ${props => props.theme.primaryColour};
+  object-fit: cover;
   margin: 0 auto;
 `;
 const AdHeader = styled.h1`
@@ -37,13 +39,14 @@ const AdInput = styled.input`
 
   &:focus {
     outline: none;
-    border-bottom: 2px solid ${props => props.theme.primaryColour};
+    border-bottom: 3px solid ${props => props.theme.primaryColour};
   }
 `;
 const AdButton = styled.button`
   text-transform: uppercase;
   background: ${props => props.theme.primaryColour};
   box-sizing: border-box;
+  cursor: pointer;
   color: white;
   border: 0;
   width: 100%;
@@ -53,15 +56,34 @@ const AdButton = styled.button`
   &:focus {
     outline: none;
   }
+
+  &:hover {
+    background: white;
+    color: ${props => props.theme.primaryColour};
+    border: 2px solid ${props => props.theme.primaryColour};
+  }
 `;
 
 class AdPanel extends Component {
   state = {
+    adlist: [],
     adCollapsed: false,
     emailCollapsed: false,
     emailValidationWarning: false,
     emailSubForm: ""
   };
+
+  componentDidMount() {
+    const url = "https://ryfaas.netlify.com/.netlify/functions/nine";
+    axios
+      .get(url)
+      .then(res => {
+        this.setState({ adlist: res.data.addresses });
+      })
+      .catch(e => {
+        console.log(`${e}`);
+      });
+  }
 
   handleEmailInputChange = e => {
     const currentValue = e.target.value;
@@ -106,7 +128,7 @@ class AdPanel extends Component {
         ) : (
           <section>
             <Card>
-              <AdImage />
+              <AdImage src={this.state.adlist[0]} />
               <AdHeader>An overwhelmingly biased advertorial.</AdHeader>
               <AdButton onClick={this.handleAdClick}>Download me now.</AdButton>
             </Card>
@@ -122,7 +144,7 @@ class AdPanel extends Component {
         ) : (
           <section>
             <Card>
-              <AdImage />
+              <AdImage src={this.state.adlist[1]} />
               <AdHeader>For all the messages.</AdHeader>
               <AdInput
                 placeholder="Let me email you; it's the best."

@@ -27,9 +27,13 @@ const RootContainer = styled.div`
   padding: 1vw;
 `;
 const Filter = ({ data, onFilterChange }) => {
-  const types = data.map(item => item.category);
-  const noDuplicateFilters = new Set(types);
-  const filters = [...noDuplicateFilters].map(type => {
+  const currSet = new Set();
+  data.forEach(item => {
+    currSet.add(item.category[0].toUpperCase());
+  });
+  //const noDuplicateFilters = new Set(types);
+
+  const filters = [...currSet].map(type => {
     return (
       <ButtonContainer key={uuid.v4()}>
         <StyledButton onClick={onFilterChange.bind(this, type)}>
@@ -45,6 +49,7 @@ const Filter = ({ data, onFilterChange }) => {
       </StyledButton>
     </ButtonContainer>
   );
+
   return <RootContainer>{[allFilter, ...filters]}</RootContainer>;
 };
 

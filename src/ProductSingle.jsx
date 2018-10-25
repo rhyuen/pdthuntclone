@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import ErrorPage from "./ErrorPage.jsx";
 import axios from "axios";
 import styled from "styled-components";
+import LoadingPage from "./LoadingPage.jsx";
 
 const StyledPdtSingle = styled.div`
   background: lavender;
@@ -12,7 +14,8 @@ const devApiRootUrl = "http://localhost:9873/product";
 class ProductSingle extends Component {
   state = {
     data: {},
-    isLoading: true
+    isLoading: true,
+    isError: false
   };
 
   componentDidMount() {
@@ -30,15 +33,16 @@ class ProductSingle extends Component {
       })
       .catch(e => {
         console.log(e);
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            isLoading: false,
+            isError: true
+          };
+        });
       });
   }
   render() {
-    const loading = this.state.isLoading ? (
-      <div>This is loading</div>
-    ) : (
-      <div>this is done loading</div>
-    );
-
     const {
       category,
       count,
@@ -48,7 +52,8 @@ class ProductSingle extends Component {
     } = this.state.data;
     return (
       <StyledPdtSingle>
-        {loading}
+        {this.state.isLoading ? <LoadingPage /> : null}
+        {this.state.isError ? <ErrorPage /> : null}
         <section>
           <h1>{name}</h1>
           <h4>{category}</h4>
