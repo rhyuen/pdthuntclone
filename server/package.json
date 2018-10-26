@@ -21,6 +21,7 @@
     "nconf": "0.10.0",
     "node-fetch": "2.2.0",
     "nodemon": "1.18.3",
+    "react": "16.6.0",
     "winston": "3.0.0"
   },
   "devDependencies": {

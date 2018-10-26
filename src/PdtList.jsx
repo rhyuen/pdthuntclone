@@ -15,16 +15,29 @@ const FigureContainer = styled.figure`
 const TextContainer = styled.summary`
   box-sizing: border-box;
   padding-left: 1vw;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.3333vw;
   position: relative;
   width: 100%;
+`;
+
+const SummaryText = styled.section`
+  font-size: 0.8rem;
 `;
 
 const ItemControl = styled.aside`
   position: absolute;
   right: 0;
   bottom: 0;
+`;
+
+const StyledLink = styled(Link)`
+  color: ${props => props.theme.primaryColour};
+  text-decoration: none;
+
+  &:visited {
+    color: ${props => props.theme.primaryColour};
+  }
 `;
 
 const ItemButton = styled.button`
@@ -39,10 +52,10 @@ const ItemButton = styled.button`
     background: ${props => props.theme.primaryColour};
     color: white;
   }
-`;
 
-const StyledLink = styled(Link)`
-  text-decoration: none;  
+  &:hover ${StyledLink} {
+    color: white;
+  }
 `;
 
 const ClickedButton = ItemButton.extend`
@@ -80,10 +93,14 @@ const List = ({
       <ListItem key={curr._id}>
         <FigureContainer />
         <TextContainer>
-          <div>
+          <section>
             <StyledLink to={`/product/${curr._id}`}>{curr.name}</StyledLink>
-          </div>
-          <section>{curr.summaryDescription}</section>
+          </section>
+          <SummaryText>
+            {curr.summaryDescription.length > 80
+              ? curr.summaryDescription.slice(0, 80).concat("...")
+              : curr.summaryDescription}
+          </SummaryText>
           <section>
             <ItemButton>
               <StyledLink to={`/category/${curr.category[0]}`}>

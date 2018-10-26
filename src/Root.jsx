@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Route } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
-import App from "./App.jsx";
+import Home from "./Home.jsx";
 import Nav from "./Nav.jsx";
 import Subscribed from "./Subscribed.jsx";
 import Me from "./Me.jsx";
@@ -35,7 +35,7 @@ const Root = () => {
         <RootContent>
           <Nav />
           <RouteContainer>
-            <Route exact path="/" component={App} />
+            <Route exact path="/" component={Home} />
             <Route exact path="/subscribed" component={Subscribed} />
             <Route exact path="/me" component={Me} />
             <Route exact path="/product/:id" component={ProductSingle} />

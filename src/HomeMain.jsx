@@ -6,17 +6,12 @@ import ErrorPage from "./ErrorPage.jsx";
 import LoadingPage from "./LoadingPage.jsx";
 import Form from "./PdtForm.jsx";
 import PdtFilter from "./PdtFilter.jsx";
-import AdPanel from "./AdPanel.jsx";
 
 const devApiUrlRoot = "http://localhost:9873";
 
 const TempUser = styled.section`
   padding: 2vw 1vw;
   background: ${props => props.theme.backgroundColour};
-`;
-
-const Root = styled.div`
-  display: flex;
 `;
 
 const MainPanel = styled.main`
@@ -27,7 +22,7 @@ const MainPanel = styled.main`
     width: 100%;
   }
 `;
-class App extends Component {
+class HomeMain extends Component {
   state = {
     data: [],
     user: {
@@ -238,43 +233,47 @@ class App extends Component {
 
   render() {
     const filteredData = this.getFilteredData();
-
     if (this.state.isLoading) {
-      return <LoadingPage />;
+      return (
+        <MainPanel>
+          <LoadingPage />
+        </MainPanel>
+      );
     } else if (this.state.isError) {
-      return <ErrorPage />;
+      return (
+        <MainPanel>
+          <ErrorPage />
+        </MainPanel>
+      );
     } else {
       return (
-        <Root>
-          <MainPanel>
-            <TempUser>
-              Logged in as: <strong>{this.state.user.name}</strong>
-            </TempUser>
-            <Form
-              onSubmit={this.handleSubmit}
-              nameValue={this.state.pdtName}
-              descriptionValue={this.state.pdtDescription}
-              categoryValue={this.state.pdtCategory}
-              onInputChange={this.handleInputChange}
-            />
-            <PdtFilter
-              data={this.state.data}
-              onFilterChange={this.handleFilterChange}
-            />
-            <PdtList
-              username={this.state.user.name}
-              data={filteredData}
-              onClickSaveForLater={this.handleSaveForLater}
-              onClickUpvote={this.handleUpvote}
-              onSubscribe={this.handleSubscribe}
-              onClickCloseButton={this.handleCloseButton}
-            />
-          </MainPanel>
-          <AdPanel />
-        </Root>
+        <MainPanel>
+          <TempUser>
+            Logged in as: <strong>{this.state.user.name}</strong>
+          </TempUser>
+          <Form
+            onSubmit={this.handleSubmit}
+            nameValue={this.state.pdtName}
+            descriptionValue={this.state.pdtDescription}
+            categoryValue={this.state.pdtCategory}
+            onInputChange={this.handleInputChange}
+          />
+          <PdtFilter
+            data={this.state.data}
+            onFilterChange={this.handleFilterChange}
+          />
+          <PdtList
+            username={this.state.user.name}
+            data={filteredData}
+            onClickSaveForLater={this.handleSaveForLater}
+            onClickUpvote={this.handleUpvote}
+            onSubscribe={this.handleSubscribe}
+            onClickCloseButton={this.handleCloseButton}
+          />
+        </MainPanel>
       );
     }
   }
 }
 
-export default App;
+export default HomeMain;

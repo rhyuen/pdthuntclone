@@ -5,6 +5,8 @@ import styled from "styled-components";
 import validator from "validator";
 import SideList from "./SideList.jsx";
 import Footer from "./Footer.jsx";
+import ItemContent from "./ItemContent.jsx";
+import ListItem from "./ProductListItem.jsx";
 
 const Root = styled.aside`
   width: 30%;
@@ -20,7 +22,7 @@ const Root = styled.aside`
 
 const AdImage = styled.img`
   width: 100%;
-  height: 4vw;
+  height: 8vw;
   background: ${props => props.theme.primaryColour};
   object-fit: cover;
   margin: 0 auto;
@@ -122,7 +124,20 @@ class AdPanel extends Component {
         <SideList
           header="Header stuff is here."
           subheader="Subheader and some other frivoulous stuff."
-        />
+        >
+          <ListItem>
+            <ItemContent header="header stuff the first" />
+          </ListItem>
+          <ListItem>
+            <ItemContent header="header stuff the second" />
+          </ListItem>
+          <ListItem>
+            <ItemContent header="header stuff third" />
+          </ListItem>
+          <ListItem>
+            <ItemContent header="header stuff zero" />
+          </ListItem>
+        </SideList>
         {this.state.adCollapsed ? (
           <div />
         ) : (
@@ -144,7 +159,20 @@ class AdPanel extends Component {
         <SideList
           header="More Header is here and some other stuff."
           subheader="Subheader and some other stuff to get me to the next line."
-        />
+        >
+          <ListItem>
+            <ItemContent header="header stuff the first" />
+          </ListItem>
+          <ListItem>
+            <ItemContent header="header stuff the second" />
+          </ListItem>
+          <ListItem>
+            <ItemContent header="header stuff third" />
+          </ListItem>
+          <ListItem>
+            <ItemContent header="header stuff zero" />
+          </ListItem>
+        </SideList>
         {this.state.emailCollapsed ? (
           <div />
         ) : (

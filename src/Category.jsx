@@ -41,7 +41,6 @@ class Category extends Component {
       });
   }
   render() {
-    console.log(this.state.data[0]);
     const item = this.state.data[0];
 
     return (

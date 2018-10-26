@@ -23,7 +23,6 @@ const StyledButton = styled.button`
 `;
 
 const RootContainer = styled.div`
-  background: rgba(0, 0, 0, 0.1);
   padding: 1vw;
 `;
 const Filter = ({ data, onFilterChange }) => {
@@ -31,7 +30,6 @@ const Filter = ({ data, onFilterChange }) => {
   data.forEach(item => {
     currSet.add(item.category[0].toUpperCase());
   });
-  //const noDuplicateFilters = new Set(types);
 
   const filters = [...currSet].map(type => {
     return (
