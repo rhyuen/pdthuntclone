@@ -31,7 +31,7 @@ const ItemButton = styled.button`
   background: white;
   border: 2px solid ${props => props.theme.primaryColour};
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   margin-left: 2px;
 
@@ -39,6 +39,10 @@ const ItemButton = styled.button`
     background: ${props => props.theme.primaryColour};
     color: white;
   }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;  
 `;
 
 const ClickedButton = ItemButton.extend`
@@ -77,10 +81,16 @@ const List = ({
         <FigureContainer />
         <TextContainer>
           <div>
-            <Link to={`/product/${curr._id}`}>{curr.name}</Link>
+            <StyledLink to={`/product/${curr._id}`}>{curr.name}</StyledLink>
           </div>
-          <div>{curr.summaryDescription}</div>
-          <div>{curr.category}</div>
+          <section>{curr.summaryDescription}</section>
+          <section>
+            <ItemButton>
+              <StyledLink to={`/category/${curr.category[0]}`}>
+                {curr.category[0]}
+              </StyledLink>
+            </ItemButton>
+          </section>
           <ItemControl>
             {upped}
             {subbed}

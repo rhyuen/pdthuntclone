@@ -6,6 +6,7 @@ import Nav from "./Nav.jsx";
 import Subscribed from "./Subscribed.jsx";
 import Me from "./Me.jsx";
 import ProductSingle from "./ProductSingle.jsx";
+import Category from "./Category.jsx";
 
 const currentTheme = {
   primaryColour: "#4842b7",
@@ -38,6 +39,7 @@ const Root = () => {
             <Route exact path="/subscribed" component={Subscribed} />
             <Route exact path="/me" component={Me} />
             <Route exact path="/product/:id" component={ProductSingle} />
+            <Route exact path="/category/:name" component={Category} />
           </RouteContainer>
         </RootContent>
       </ThemeProvider>

@@ -12,7 +12,7 @@ const rotate = keyframes`
     }
 `;
 
-const Rotate = styled.div`
+const Rotate = styled.span`
   box-sizing: border-box;
   display: inline-block;
   height: 2vw;
@@ -26,10 +26,10 @@ const LoadingPage = () => {
   return (
     <Container>
       <h2>Page is loading...</h2>
-      <p>
+      <section>
         Cool kids add animations here.
         <Rotate>|O|^|O|</Rotate>
-      </p>
+      </section>
     </Container>
   );
 };

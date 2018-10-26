@@ -128,7 +128,13 @@ class AdPanel extends Component {
         ) : (
           <section>
             <Card>
-              <AdImage src={this.state.adlist[0]} />
+              <AdImage
+                src={
+                  this.state.adlist[
+                    Math.floor(Math.random() * 100) % this.state.adlist.length
+                  ]
+                }
+              />
               <AdHeader>An overwhelmingly biased advertorial.</AdHeader>
               <AdButton onClick={this.handleAdClick}>Download me now.</AdButton>
             </Card>
@@ -144,7 +150,13 @@ class AdPanel extends Component {
         ) : (
           <section>
             <Card>
-              <AdImage src={this.state.adlist[1]} />
+              <AdImage
+                src={
+                  this.state.adlist[
+                    Math.floor(Math.random() * 100) % this.state.adlist.length
+                  ]
+                }
+              />
               <AdHeader>For all the messages.</AdHeader>
               <AdInput
                 placeholder="Let me email you; it's the best."

@@ -68,8 +68,8 @@ class App extends Component {
   }
 
   handleInputChange = e => {
-    let currValue = e.currentTarget.value;
-    let currInput = e.currentTarget.name;
+    let currValue = e.target.value;
+    let currInput = e.target.name;
 
     this.setState(prevState => {
       let change = {};
@@ -95,9 +95,7 @@ class App extends Component {
     const summaryDescription = this.state.pdtDescription;
 
     if (name === "" || category === "" || summaryDescription === "") {
-      return this.setState(prevState => {
-        return prevState;
-      });
+      return;
     }
     const payload = { name, category, summaryDescription };
     axios
