@@ -11,12 +11,22 @@ const Avatar = styled.section`
 const Container = styled.section`
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   width: 100%;
   font-weight: 500;
 `;
 
+const TextContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+const SubHeader = styled.section`
+  font-size: 0.7rem;
+  font-weight: 400;
+`;
+
 const Root = ({ header, children }) => {
-  if (children) {
+  if (!children) {
     return (
       <Container>
         <Avatar />
@@ -27,8 +37,10 @@ const Root = ({ header, children }) => {
     return (
       <Container>
         <Avatar />
-        {header}
-        {children}
+        <TextContainer>
+          {header}
+          <SubHeader>{children}</SubHeader>
+        </TextContainer>
       </Container>
     );
   }

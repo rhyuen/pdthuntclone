@@ -75,6 +75,21 @@ class AdPanel extends Component {
     emailSubForm: ""
   };
 
+  handleCloseButton = e => {
+    const name = e.target.name;
+    if (name === "download_close_button") {
+      this.setState({
+        adCollapsed: true
+      });
+    } else if (name === "email_close_button") {
+      this.setState({
+        emailCollapsed: true
+      });
+    } else {
+      return;
+    }
+  };
+
   componentDidMount() {
     const url = "https://ryfaas.netlify.com/.netlify/functions/nine";
     axios
@@ -152,6 +167,12 @@ class AdPanel extends Component {
               />
               <AdHeader>An overwhelmingly biased advertorial.</AdHeader>
               <AdButton onClick={this.handleAdClick}>Download me now.</AdButton>
+              <CloseButton
+                onClick={this.handleCloseButton}
+                name="download_close_button"
+              >
+                X
+              </CloseButton>
             </Card>
           </section>
         )}
@@ -161,16 +182,24 @@ class AdPanel extends Component {
           subheader="Subheader and some other stuff to get me to the next line."
         >
           <ListItem>
-            <ItemContent header="header stuff the first" />
+            <ItemContent header="header stuff the first">
+              subtext goes here because subtext goes byeond
+            </ItemContent>
           </ListItem>
           <ListItem>
-            <ItemContent header="header stuff the second" />
+            <ItemContent header="header stuff the second">
+              todo: truncate text after a certain point.
+            </ItemContent>
           </ListItem>
           <ListItem>
-            <ItemContent header="header stuff third" />
+            <ItemContent header="header stuff third">
+              more text. third is the cut off.
+            </ItemContent>
           </ListItem>
           <ListItem>
-            <ItemContent header="header stuff zero" />
+            <ItemContent header="header stuff zero">
+              more text. fourth is unfortunate.
+            </ItemContent>
           </ListItem>
         </SideList>
         {this.state.emailCollapsed ? (
@@ -192,6 +221,12 @@ class AdPanel extends Component {
                 value={this.state.emailSubForm}
               />
               <AdButton onClick={this.handleEmailClick}>Subscribe</AdButton>
+              <CloseButton
+                onClick={this.handleCloseButton}
+                name="email_close_button"
+              >
+                X
+              </CloseButton>
             </Card>
           </section>
         )}
@@ -200,5 +235,25 @@ class AdPanel extends Component {
     );
   }
 }
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: -0.5vw;
+  right: -0.5vw;
+  border-radius: 50%;
+  border: 1px solid ${props => props.theme.primaryColour};
+  background: ${props => props.theme.primaryColour};
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1vw;
+  height: 1vw;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+`;
 
 export default AdPanel;

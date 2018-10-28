@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Card = styled.section`
+  position: relative;
   padding: 1vw;
   box-sizing: border-box;
   background: white;
