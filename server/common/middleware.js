@@ -11,11 +11,28 @@ module.exports = (app) => {
     app.use(bodyParser.urlencoded({
         extended: false
     }));
-    app.use(cors());
-    app.use(cookieParser(config.getSecrets().cookieSecret, {
+
+    //config.getSecrets().cookieSecret,
+    app.use(cookieParser({
         httpOnly: true,
-        maxAge: 7200
+        maxAge: 1000 * 60 * 15
     }));
+
+    const originWhiteList = ["http://localhost:8081", "http://localhost:8080"];
+    const corsOptions = {
+        allowedHeaders: ["Content-Type"],
+        credentials: true,
+        origin: (address, cb) => {
+            if (originWhiteList.includes(address)) {
+                cb(null, true);
+            } else {
+                cb(new Error("Not allowed by cors"));
+            }
+        }
+    }
+
+    app.use(cors(corsOptions));
+
     app.use(morgan("dev"));
     mongoose.connection.openUri(config.getSecrets().db, {
             useNewUrlParser: true,
@@ -23,9 +40,8 @@ module.exports = (app) => {
             reconnectTries: 20
         })
         .once("open", () => {
-            console.log("DB Connection OPEN.");
+            logger.info("DB Connection OPEN.");
         }).on("error", e => {
-            console.log("ERR with DB CONN");
             logger.error(`[MONGODB ERROR]: ${e}`);
         });
 };

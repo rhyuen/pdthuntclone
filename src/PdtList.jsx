@@ -22,6 +22,10 @@ const TextContainer = styled.summary`
 `;
 
 const SummaryText = styled.section`
+  @media (min-width: 1023px) {
+    display: block;
+  }
+  display: none;
   font-size: 0.8rem;
 `;
 
@@ -74,17 +78,17 @@ const List = ({
     const upped = curr.count.includes(username) ? (
       <ClickedButton>{curr.count.length}</ClickedButton>
     ) : (
-      <ItemButton onClick={onClickUpvote.bind(this, curr._id)}>+</ItemButton>
+      <ItemButton onClick={e => onClickUpvote(curr._id, e)}>+</ItemButton>
     );
     const subbed = curr.subscribed.includes(username) ? (
       <ClickedButton>Subbed</ClickedButton>
     ) : (
-      <ItemButton onClick={onSubscribe.bind(this, curr._id)}>Sub</ItemButton>
+      <ItemButton onClick={e => onSubscribe(curr._id, e)}>Sub</ItemButton>
     );
     const saved = curr.saved.includes(username) ? (
       <ClickedButton>Saved</ClickedButton>
     ) : (
-      <ItemButton onClick={onClickSaveForLater.bind(this, curr._id)}>
+      <ItemButton onClick={e => onClickSaveForLater(curr._id, e)}>
         Save
       </ItemButton>
     );
@@ -112,7 +116,7 @@ const List = ({
             {upped}
             {subbed}
             {saved}
-            <ItemButton onClick={onClickCloseButton.bind(this, curr._id)}>
+            <ItemButton onClick={e => onClickCloseButton(curr._id, e)}>
               X
             </ItemButton>
           </ItemControl>

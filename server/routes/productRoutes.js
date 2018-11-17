@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.get("/", wrapAsync(async (req, res) => {
     const data = await Product.find();
-    console.log(data);
     const formedResponse = {
         data: data
     }

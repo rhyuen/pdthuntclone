@@ -254,6 +254,10 @@ const CloseButton = styled.button`
   &:focus {
     outline: none;
   }
+
+  &:hover {
+    background: gray;
+  }
 `;
 
 export default AdPanel;

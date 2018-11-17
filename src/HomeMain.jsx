@@ -26,7 +26,7 @@ class HomeMain extends Component {
   state = {
     data: [],
     user: {
-      name: "Darkseid"
+      name: "Anti-Monitor"
     },
     filter: "All",
     pdtName: `Product Name ${Math.floor(Math.random() * 100)}`,
