@@ -1,0 +1,12 @@
+{
+    "version": 1,
+    "name": "rypdt",
+    "environment": {
+
+    },
+    "alias": [
+        "rypdt"
+    ],
+    "type": "static",
+    "public": "true"
+}

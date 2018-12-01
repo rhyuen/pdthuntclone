@@ -62,7 +62,7 @@ const ItemButton = styled.button`
   }
 `;
 
-const ClickedButton = ItemButton.extend`
+const ClickedButton = styled(ItemButton)`
   background: ${props => props.theme.primaryColour};
   color: white;
 `;

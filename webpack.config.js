@@ -11,16 +11,22 @@ module.exports = {
         filename: "bundle.js"
     },
     module: {
-        loaders: [{
-            test: /\.jsx$/,
+        rules: [{
+            test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            loader: "babel-loader"
+            use: {
+                loader: "babel-loader"
+            }
         }, {
             test: /\.json$/,
-            loader: "json-loader"
+            use: {
+                loader: "json-loader"
+            }
         }, {
             test: /\.(png|jpg|gif)$/,
-            loader: "file-loader"
+            use: {
+                loader: "file-loader"
+            }
 
         }]
     },
