@@ -1,8 +1,8 @@
 {
     "version": 1,
     "name": "rypdt",
-    "environment": {
-
+    "env": {
+        "db": "@pdt_prod_db"
     },
     "alias": [
         "rypdt"

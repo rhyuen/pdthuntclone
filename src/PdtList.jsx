@@ -125,7 +125,15 @@ const List = ({
     );
   });
 
-  return <Card header="All the items are here.">{listOfItems}</Card>;
+  return (
+    <Card header="All the items are here.">
+      {listOfItems.length === 0 ? (
+        <p>In this case, there aren't any. Add some above.</p>
+      ) : (
+        listOfItems
+      )}
+    </Card>
+  );
 };
 
 List.propTypes = {

@@ -11,12 +11,21 @@ const Row = styled.nav`
   color: #343434;
   line-height: 1vw;
 `;
+const Anchor = styled.a`
+  text-decoration: none;
+  font-weight: bold;
+  color: ${props => props.theme.primaryColour};
+`;
 
 const Root = () => {
   return (
     <Footer>
-      <Row>About * Other</Row>
-      <Row>By RoYu</Row>
+      <Row>
+        By{" "}
+        <Anchor href="https://ryuen.now.sh" target="_blank">
+          RoYu
+        </Anchor>
+      </Row>
     </Footer>
   );
 };

@@ -8,6 +8,8 @@ import Footer from "./Footer.jsx";
 import ItemContent from "./ItemContent.jsx";
 import ListItem from "./ProductListItem.jsx";
 
+const devApiUrlRoot = "http://localhost:9873";
+
 const Root = styled.aside`
   width: 30%;
   background: inherit;
@@ -114,15 +116,30 @@ class AdPanel extends Component {
   handleEmailClick = e => {
     if (!validator.isEmail(this.state.emailSubForm)) {
       return;
+    } else {
+      axios
+        .post(`${devApiUrlRoot}/email`, { email: this.state.emailSubForm })
+        .then(res => {
+          console.log(res);
+          this.setState(prevState => {
+            return {
+              ...prevState,
+              emailCollapsed: true,
+              emailSubForm: ""
+            };
+          });
+        })
+        .catch(e => {
+          console.log(e);
+          this.setState(prevState => {
+            return {
+              ...prevState,
+              emailCollapsed: true,
+              emailSubForm: ""
+            };
+          });
+        });
     }
-    //TODO: POST REQUEST to email server.
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        emailCollapsed: true,
-        emailSubForm: ""
-      };
-    });
   };
 
   handleAdClick = () => {
@@ -138,19 +155,19 @@ class AdPanel extends Component {
       <Root>
         <SideList
           header="Header stuff is here."
-          subheader="Subheader and some other frivoulous stuff."
+          subheader="Subheader and some follow up text."
         >
           <ListItem>
-            <ItemContent header="header stuff the first" />
+            <ItemContent header="First Headline Filler" />
           </ListItem>
           <ListItem>
-            <ItemContent header="header stuff the second" />
+            <ItemContent header="Second Headline Filler" />
           </ListItem>
           <ListItem>
-            <ItemContent header="header stuff third" />
+            <ItemContent header="Third Headline Filler" />
           </ListItem>
           <ListItem>
-            <ItemContent header="header stuff zero" />
+            <ItemContent header="Fourth Headline Filler" />
           </ListItem>
         </SideList>
         {this.state.adCollapsed ? (
@@ -158,14 +175,8 @@ class AdPanel extends Component {
         ) : (
           <section>
             <Card>
-              <AdImage
-                src={
-                  this.state.adlist[
-                    Math.floor(Math.random() * 100) % this.state.adlist.length
-                  ]
-                }
-              />
-              <AdHeader>An overwhelmingly biased advertorial.</AdHeader>
+              <AdImage src={this.state.adlist[0]} />
+              <AdHeader>An overwhelmingly biased article.</AdHeader>
               <AdButton onClick={this.handleAdClick}>Download me now.</AdButton>
               <CloseButton
                 onClick={this.handleCloseButton}
@@ -178,45 +189,37 @@ class AdPanel extends Component {
         )}
 
         <SideList
-          header="More Header is here and some other stuff."
+          header="Primary Headline for Second Set"
           subheader="Subheader and some other stuff to get me to the next line."
         >
           <ListItem>
-            <ItemContent header="header stuff the first">
-              subtext goes here because subtext goes byeond
+            <ItemContent header="Second Set, First Header">
+              Subtext goes here because subtext is necessary.
             </ItemContent>
           </ListItem>
           <ListItem>
-            <ItemContent header="header stuff the second">
-              todo: truncate text after a certain point.
+            <ItemContent header="Second Set, Second Header">
+              Subtext goes here because subtext is necessary.
             </ItemContent>
           </ListItem>
           <ListItem>
-            <ItemContent header="header stuff third">
-              more text. third is the cut off.
+            <ItemContent header="Second Set, Third Header">
+              Shorter subtext.
             </ItemContent>
           </ListItem>
           <ListItem>
-            <ItemContent header="header stuff zero">
-              more text. fourth is unfortunate.
+            <ItemContent header="Second Set, Fourth Header">
+              Subtext goes here because subtext is necessary.
             </ItemContent>
           </ListItem>
         </SideList>
-        {this.state.emailCollapsed ? (
-          <div />
-        ) : (
+        {this.state.emailCollapsed ? null : (
           <section>
             <Card>
-              <AdImage
-                src={
-                  this.state.adlist[
-                    Math.floor(Math.random() * 100) % this.state.adlist.length
-                  ]
-                }
-              />
-              <AdHeader>For all the messages.</AdHeader>
+              <AdImage src={this.state.adlist[1]} />
+              <AdHeader>For followup messages.</AdHeader>
               <AdInput
-                placeholder="Let me email you; it's the best."
+                placeholder="Your goes email here."
                 onChange={this.handleEmailInputChange}
                 value={this.state.emailSubForm}
               />

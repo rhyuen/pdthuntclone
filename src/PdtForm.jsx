@@ -41,7 +41,7 @@ const PdtForm = ({
   descriptionValue
 }) => {
   return (
-    <Card header="ADD MOAR THINGS.">
+    <Card header="ADD NEW ITEMS.">
       <StyledForm onSubmit={onSubmit}>
         <StyledTextInput
           type="text"
@@ -67,7 +67,7 @@ const PdtForm = ({
           value={categoryValue}
         />
         <br />
-        <StyledSubmit type="submit" value="MOAR!" />
+        <StyledSubmit type="submit" value="Submit" />
       </StyledForm>
     </Card>
   );

@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=prod PORT=9872 nodemon index.js",
+    "start": "cross-env NODE_ENV=production PORT=9873 nodemon index.js",
     "dev": "cross-env NODE_ENV=dev PORT=9873 nodemon index.js",
     "test": "mocha ./test/*.spec.js"
   },

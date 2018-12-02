@@ -51,6 +51,7 @@ class HomeMain extends Component {
         });
       })
       .catch(e => {
+        console.log(e);
         //TODO: POST a request to a server with the error.
         this.setState(prevState => {
           return {

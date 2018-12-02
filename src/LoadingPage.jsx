@@ -12,14 +12,27 @@ const rotate = keyframes`
     }
 `;
 
-const Rotate = styled.span`
+const Rotate = styled.div`
   box-sizing: border-box;
   display: inline-block;
-  height: 2vw;
-  width: 2vw;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+    lavender,
+    ${props => props.theme.primaryColour}
+  );
+  border-radius: 50%;
   animation: ${rotate} 1s linear infinite;
-  padding: 1vw 1vw;
-  font-size: 1.2rem;
+`;
+
+const InnerRing = styled.div`
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: ${props => props.theme.backgroundColour};
 `;
 
 const LoadingPage = () => {
@@ -27,8 +40,9 @@ const LoadingPage = () => {
     <Container>
       <h2>Page is loading...</h2>
       <section>
-        Cool kids add animations here.
-        <Rotate>|O|^|O|</Rotate>
+        <Rotate>
+          <InnerRing />
+        </Rotate>
       </section>
     </Container>
   );
