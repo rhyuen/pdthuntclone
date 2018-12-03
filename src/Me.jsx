@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Card from "./Card.jsx";
 import styled from "styled-components";
 
 class Me extends Component {
   state = {
-    data: "data is here"
+    data: "data is here",
+    user: {
+      username: "RandomUser978",
+      profileImg: ""
+    }
   };
 
   componentDidMount() {
@@ -17,15 +22,34 @@ class Me extends Component {
 
   render() {
     return (
-      <section>
-        hi
-        <div>another: {document.cookie.split(";")}</div>
-        <div>ME: {document.cookie.split(";")}</div>
-        <div>Cookies: {document.cookie}</div>
-        <div>{this.state.data}</div>
-      </section>
+      <MeSection>
+        <Card />
+        <Feed>
+          <Card>Other Stuff</Card>
+        </Feed>
+      </MeSection>
     );
   }
 }
+const Feed = styled.div`
+  margin-top: 1vw;
+  display: grid;
+`;
+
+const MeSection = styled.section`
+  margin-top: 1vw;
+  display: grid;
+  grid-template-column: repeat(12, 1fr);
+`;
+
+const UserData = () => {
+  return (
+    <div>
+      <div>another: {document.cookie.split(";")}</div>
+      <div>ME: {document.cookie.split(";")}</div>
+      <div>Cookies: {document.cookie}</div>
+    </div>
+  );
+};
 
 export default Me;

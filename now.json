@@ -8,5 +8,5 @@
         "rypdt"
     ],
     "type": "static",
-    "public": "true"
+    "public": true
 }

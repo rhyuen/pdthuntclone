@@ -170,14 +170,20 @@ class AdPanel extends Component {
             <ItemContent header="Fourth Headline Filler" />
           </ListItem>
         </SideList>
-        {this.state.adCollapsed ? (
-          <div />
-        ) : (
+
+        {this.state.adCollapsed ? null : (
           <section>
             <Card>
               <AdImage src={this.state.adlist[0]} />
               <AdHeader>An overwhelmingly biased article.</AdHeader>
-              <AdButton onClick={this.handleAdClick}>Download me now.</AdButton>
+              <AdButton onClick={this.handleAdClick}>
+                <StyledLink
+                  href="https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf"
+                  target="_blank"
+                >
+                  Download
+                </StyledLink>
+              </AdButton>
               <CloseButton
                 onClick={this.handleCloseButton}
                 name="download_close_button"
@@ -213,6 +219,7 @@ class AdPanel extends Component {
             </ItemContent>
           </ListItem>
         </SideList>
+
         {this.state.emailCollapsed ? null : (
           <section>
             <Card>
@@ -238,6 +245,11 @@ class AdPanel extends Component {
     );
   }
 }
+
+const StyledLink = styled.a`
+  text-decoration: none;
+  color: white;
+`;
 
 const CloseButton = styled.button`
   position: absolute;

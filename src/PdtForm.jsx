@@ -67,7 +67,7 @@ const PdtForm = ({
           value={categoryValue}
         />
         <br />
-        <StyledSubmit type="submit" value="Submit" />
+        <StyledSubmit type="submit" value="SUBMIT" />
       </StyledForm>
     </Card>
   );
