@@ -1,5 +1,5 @@
 {
-    "version": 1,
+    "version": 2,
     "name": "rypdt",
     "env": {
         "db": "@pdt_prod_db"
@@ -8,5 +8,23 @@
         "rypdt"
     ],
     "type": "static",
+    "builds": [{
+            "src": "./package.json",
+            "use": "@now/static-build"
+        },
+        {
+            "src": "./server/index.js",
+            "use": "@now/node-server"
+        }
+    ],
+    "routes": [{
+            "src": "/api/*",
+            "dest": "./server/index.js"
+        },
+        {
+            "src": "/",
+            "dest": "index.html"
+        }
+    ],
     "public": true
 }

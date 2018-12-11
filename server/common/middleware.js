@@ -31,7 +31,7 @@ module.exports = (app) => {
         }
     }
 
-    //app.use(cors(corsOptions));
+    app.use(cors(corsOptions));
 
     app.use(morgan("dev"));
     mongoose.connection.openUri(config.getSecrets().db, {

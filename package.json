@@ -5,15 +5,7 @@
   "author": "Robert Yuen",
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "6.26.3",
-    "babel-eslint": "10.0.1",
-    "babel-jest": "23.6.0",
     "babel-loader": "8.0.4",
-    "babel-plugin-syntax-object-rest-spread": "6.13.0",
-    "babel-plugin-transform-class-properties": "6.24.1",
-    "babel-plugin-transform-object-rest-spread": "6.26.0",
-    "babel-preset-env": "1.7.0",
-    "babel-preset-react": "6.24.1",
     "copy-webpack-plugin": "4.6.0",
     "enzyme": "3.7.0",
     "enzyme-adapter-react-16": "1.7.0",
@@ -58,6 +50,7 @@
     "dev": "webpack-dev-server --mode development ./src/Index.jsx --open",
     "format": "prettier --write \"src/*.{js,jsx,css,json}\" ",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "now-build": "webpack"
   }
 }

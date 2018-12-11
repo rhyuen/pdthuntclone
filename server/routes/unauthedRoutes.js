@@ -18,13 +18,6 @@ router.get("/me", wrapAsync(async (req, res) => {
     });
 }));
 
-router.get("/download", wrapAsync(async (req, res) => {
-    const file = "advertorial.pdf";
-    res.download(file, "advertorialsave.pdf");
-    //res.attachment("advertorial.pdf");
-    //res.sendFile(path.join(__dirname, "../advertorial.pdf"));
-}));
-
 router.get("/news", wrapAsync(async (req, res) => {
     res.status(200).json({
         action: "/news",
@@ -81,8 +74,6 @@ router.post("/email", wrapAsync(async (req, res) => {
         });
     }
 }));
-
-
 
 router.get("*", Main.notFound);
 
