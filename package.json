@@ -42,15 +42,16 @@
     "styled-components": "4.1.2",
     "uuid": "3.3.2",
     "validator": "10.9.0",
+    "webpack-bundle-analyzer": "3.0.3",
     "webpack-cli": "3.1.2"
   },
   "scripts": {
     "start": "webpack",
+    "now-build": "webpack --mode production ./src/Index.jsx",
     "build": "webpack --mode production ./src/Index.jsx",
     "dev": "webpack-dev-server --mode development ./src/Index.jsx --open",
     "format": "prettier --write \"src/*.{js,jsx,css,json}\" ",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
-    "test": "jest --watch",
-    "now-build": "webpack"
+    "test": "jest --watch"
   }
 }

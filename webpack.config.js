@@ -1,5 +1,8 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const {
+    BundleAnalyzerPlugin
+} = require("webpack-bundle-analyzer");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
@@ -35,7 +38,7 @@ module.exports = {
             template: path.join(__dirname, "src/templates/index.html"),
             filename: "index.html",
             inject: "body",
-            title: "Front End Boilerplate Project"
+            title: "Pdthunt Clone"
         }),
         new CopyWebpackPlugin([{
             from: "./src/images/*.ico",
@@ -47,6 +50,12 @@ module.exports = {
         }], {
             debug: "debug",
             copyUnmodified: true
+        }),
+        new BundleAnalyzerPlugin({
+            analyzerMode: "static",
+            openAnalyzer: false,
+            reportFilename: "bundle_sizes.html"
         })
-    ]
+    ],
+    devtool: "source-map"
 };
