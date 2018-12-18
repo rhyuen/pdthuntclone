@@ -4,12 +4,16 @@ import ErrorPage from "./ErrorPage.jsx";
 import axios from "axios";
 import styled from "styled-components";
 import LoadingPage from "./LoadingPage.jsx";
+import getEnv from "./getenv.js";
 
 const StyledPage = styled.div`
   background: lavender;
 `;
 
-const devApiRootUrl = "http://localhost:9873";
+//const devApiRootUrl = getEnv();
+
+const devApiRootUrl =
+  process.env.NODE_ENV === "development" ? "http://localhost:9873" : "";
 
 class Category extends Component {
   state = {

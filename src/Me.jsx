@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import Card from "./Card.jsx";
 import styled from "styled-components";
+import { Consumer } from "./Context.jsx";
+import getEnv from "./getenv.js";
 
 class Me extends Component {
   state = {
@@ -13,7 +15,7 @@ class Me extends Component {
   };
 
   componentDidMount() {
-    const url = "http://localhost:9873/me";
+    const url = `${getEnv()}/me`;
     axios.get(url, { withCredentials: true }).then(res => {
       console.log(res.data);
       this.setState({ data: res.data.message });

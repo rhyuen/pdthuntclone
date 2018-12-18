@@ -7,8 +7,10 @@ import SideList from "./SideList.jsx";
 import Footer from "./Footer.jsx";
 import ItemContent from "./ItemContent.jsx";
 import ListItem from "./ProductListItem.jsx";
+import { hot } from "react-hot-loader";
+import getEnv from "./getenv.js";
 
-const devApiUrlRoot = "http://localhost:9873";
+const devApiUrlRoot = getEnv();
 
 const Root = styled.aside`
   width: 30%;
@@ -154,17 +156,17 @@ class AdPanel extends Component {
     return (
       <Root>
         <SideList
-          header="Header stuff is here."
-          subheader="Subheader and some follow up text."
+          header="Header stuff resides here."
+          subheader="Subheader as well as extra text."
         >
           <ListItem>
-            <ItemContent header="First Headline Filler" />
+            <ItemContent header="First Headline Text" />
           </ListItem>
           <ListItem>
-            <ItemContent header="Second Headline Filler" />
+            <ItemContent header="The Second Headline Words" />
           </ListItem>
           <ListItem>
-            <ItemContent header="Third Headline Filler" />
+            <ItemContent header="Third Words Filler" />
           </ListItem>
           <ListItem>
             <ItemContent header="Fourth Headline Filler" />
@@ -196,7 +198,7 @@ class AdPanel extends Component {
 
         <SideList
           header="Primary Headline for Second Set"
-          subheader="Subheader and some other stuff to get me to the next line."
+          subheader="Subheader and extraneous stuff to get me to the next line."
         >
           <ListItem>
             <ItemContent header="Second Set, First Header">
@@ -275,4 +277,6 @@ const CloseButton = styled.button`
   }
 `;
 
-export default AdPanel;
+// const hotFunction = hot(module);
+// export default hotFunction(AdPanel);
+export default hot(module)(AdPanel);

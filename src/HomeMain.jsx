@@ -6,8 +6,9 @@ import ErrorPage from "./ErrorPage.jsx";
 import LoadingPage from "./LoadingPage.jsx";
 import Form from "./PdtForm.jsx";
 import PdtFilter from "./PdtFilter.jsx";
+import getEnv from "./getenv.js";
 
-const devApiUrlRoot = "http://localhost:9873";
+const devApiUrlRoot = getEnv();
 
 const TempUser = styled.section`
   padding: 2vw 1vw;
@@ -37,7 +38,7 @@ class HomeMain extends Component {
   };
 
   componentDidMount() {
-    const apiURL = `${devApiUrlRoot}/product`;
+    const apiURL = `${devApiUrlRoot}/product/`;
     axios
       .get(apiURL)
       .then(res => {

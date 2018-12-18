@@ -1,0 +1,9 @@
+{
+    "version": 1,
+    "env": {
+        "db": "@pdt_prod_db",
+        "NODE_ENV": "prod"
+    },
+    "type": "npm",
+    "public": true
+}

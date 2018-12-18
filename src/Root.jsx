@@ -7,6 +7,7 @@ import Subscribed from "./Subscribed.jsx";
 import Me from "./Me.jsx";
 import ProductSingle from "./ProductSingle.jsx";
 import Category from "./Category.jsx";
+import { Provider } from "./Context.jsx";
 
 const currentTheme = {
   primaryColour: "#4842b7",
@@ -31,18 +32,20 @@ const RouteContainer = styled.div`
 const Root = () => {
   return (
     <Router>
-      <ThemeProvider theme={currentTheme}>
-        <RootContent>
-          <Nav />
-          <RouteContainer>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/subscribed" component={Subscribed} />
-            <Route exact path="/me" component={Me} />
-            <Route exact path="/product/:id" component={ProductSingle} />
-            <Route exact path="/category/:name" component={Category} />
-          </RouteContainer>
-        </RootContent>
-      </ThemeProvider>
+      <Provider>
+        <ThemeProvider theme={currentTheme}>
+          <RootContent>
+            <Nav />
+            <RouteContainer>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/subscribed" component={Subscribed} />
+              <Route exact path="/me" component={Me} />
+              <Route exact path="/product/:id" component={ProductSingle} />
+              <Route exact path="/category/:name" component={Category} />
+            </RouteContainer>
+          </RootContent>
+        </ThemeProvider>
+      </Provider>
     </Router>
   );
 };

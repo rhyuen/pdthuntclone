@@ -5,6 +5,7 @@ import axios from "axios";
 import styled from "styled-components";
 import LoadingPage from "./LoadingPage.jsx";
 import Card from "./Card.jsx";
+import getEnv from "./getenv.js";
 import ListItem from "./ProductListItem.jsx";
 
 const StyledPdtSingle = styled.section`
@@ -36,7 +37,7 @@ const SingleSide = styled.aside`
   width: 30%;
 `;
 
-const devApiRootUrl = "http://localhost:9873/product";
+const devApiRootUrl = `${getEnv()}/product`;
 
 class ProductSingle extends Component {
   state = {

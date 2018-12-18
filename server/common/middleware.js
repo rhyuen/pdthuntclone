@@ -18,7 +18,7 @@ module.exports = (app) => {
         maxAge: 1000 * 60 * 15
     }));
 
-    const originWhiteList = ["http://localhost:8081", "http://localhost:8080"];
+    const originWhiteList = (process.env.NODE_ENV === "dev") ? ["http://localhost:8081", "http://localhost:8080"] : ["https://rypdt.now.sh"];
     const corsOptions = {
         allowedHeaders: ["Content-Type"],
         credentials: true,
