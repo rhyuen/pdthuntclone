@@ -1,13 +1,12 @@
 {
     "version": 2,
-    "name": "rypdt",
+    "name": "rypdtfed",
+    "alias": [
+        "rypdtfed"
+    ],
     "env": {
-        "db": "@pdt_prod_db",
         "NODE_ENV": "prod"
     },
-    "alias": [
-        "rypdt"
-    ],
     "builds": [{
         "src": "package.json",
         "use": "@now/static-build"

@@ -54,6 +54,7 @@
     "build": "webpack --mode production ./src/Index.jsx",
     "dev": "webpack-dev-server --mode development ./src/Index.jsx --open",
     "dev:hot": "npm run dev -- --hot",
+    "deploy": "now --public",
     "format": "prettier --write \"src/*.{js,jsx,css,json}\" ",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
     "test": "jest --watch"

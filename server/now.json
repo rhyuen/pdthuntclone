@@ -1,5 +1,9 @@
 {
     "version": 1,
+    "name": "rypdtsapi",
+    "alias": [
+        "rypdtsapi"
+    ],
     "env": {
         "db": "@pdt_prod_db",
         "NODE_ENV": "prod"

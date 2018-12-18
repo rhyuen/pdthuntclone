@@ -3,7 +3,7 @@ const urls = {
         server: "http://localhost:9873"
     },
     prod: {
-        server: ""
+        server: "https://rypdtsapi.now.sh"
     }
 };
 export default () => {

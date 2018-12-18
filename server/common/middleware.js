@@ -18,7 +18,7 @@ module.exports = (app) => {
         maxAge: 1000 * 60 * 15
     }));
 
-    const originWhiteList = (process.env.NODE_ENV === "dev") ? ["http://localhost:8081", "http://localhost:8080"] : ["https://rypdt.now.sh"];
+    const originWhiteList = (process.env.NODE_ENV === "dev") ? ["http://localhost:8081", "http://localhost:8080"] : ["https://rypdtfed.now.sh"];
     const corsOptions = {
         allowedHeaders: ["Content-Type"],
         credentials: true,
@@ -26,7 +26,7 @@ module.exports = (app) => {
             if (originWhiteList.includes(address)) {
                 cb(null, true);
             } else {
-                cb(new Error("Not allowed by cors"));
+                cb(new Error(`${address} not allowed by CORS.`));
             }
         }
     }
