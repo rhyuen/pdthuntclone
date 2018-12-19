@@ -29,6 +29,13 @@ const SummaryText = styled.section`
   font-size: 0.8rem;
 `;
 
+const CategorySection = styled.section`
+  @media (min-width: 850px) {
+    display: block;
+  }
+  display: none;
+`;
+
 const ItemControl = styled.aside`
   position: absolute;
   right: 0;
@@ -105,13 +112,13 @@ const List = ({
               ? curr.summaryDescription.slice(0, 80).concat("...")
               : curr.summaryDescription}
           </SummaryText>
-          <section>
+          <CategorySection>
             <ItemButton>
               <StyledLink to={`/category/${curr.category[0]}`}>
                 {curr.category[0]}
               </StyledLink>
             </ItemButton>
-          </section>
+          </CategorySection>
           <ItemControl>
             {upped}
             {subbed}
