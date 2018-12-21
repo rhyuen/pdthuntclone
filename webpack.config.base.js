@@ -1,8 +1,5 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
-const {
-    BundleAnalyzerPlugin
-} = require("webpack-bundle-analyzer");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
@@ -17,19 +14,7 @@ module.exports = {
         rules: [{
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            loader: "babel-loader",
-            options: {
-                presets: [
-                    "@babel/preset-react",
-                    "@babel/preset-env"
-                ],
-                plugins: [
-                    "react-hot-loader/babel",
-                    "@babel/plugin-proposal-object-rest-spread",
-                    "@babel/plugin-proposal-class-properties",
-                    "@babel/plugin-syntax-dynamic-import"
-                ]
-            }
+            loader: "babel-loader"
         }, {
             test: /\.json$/,
             use: {
@@ -59,12 +44,6 @@ module.exports = {
         }], {
             debug: "debug",
             copyUnmodified: true
-        }),
-        new BundleAnalyzerPlugin({
-            analyzerMode: "static",
-            openAnalyzer: false,
-            reportFilename: "bundle_sizes.html"
         })
-    ],
-    devtool: "source-map"
+    ]
 };
